@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Kitchen | Sachin Bhasin</title>
+    <title>My Kitchen | Sachin B</title>
     <link rel="icon" type="image/png" href="../camera.png">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -167,8 +167,8 @@
         </div>
 
         <div class="filters-container">
-            <button class="filter-btn" data-filter="sweet">Sweet</button>
-            <button class="filter-btn" data-filter="savoury">Savoury</button>
+            <button class="filter-btn" data-filter="sauce">Sauce</button>
+            <button class="filter-btn" data-filter="side">Side</button>
             <button class="filter-btn" data-filter="breakfast">Breakfast</button>
             <button class="filter-btn" data-filter="lunch">Lunch</button>
             <button class="filter-btn" data-filter="dinner">Dinner</button>
@@ -180,23 +180,52 @@
         <div class="recipes-grid">
 
             <!-- ========== RECIPE 1 ========== -->
-            <article class="recipe-card visible" data-tags="savoury,dinner" onclick="openRecipeModal(0)">
-                <div class="recipe-image">RECIPE PHOTO</div>
+            <article class="recipe-card visible" data-tags="snack" onclick="openRecipeModal(0)">
+                <div class="recipe-image">
+                    <img src="assets\Shortbread.jpg" alt="Scottish Shortbread" style="width:100%;height:100%;object-fit:cover;">
+                </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
-                        <span class="recipe-tag">Savoury</span>
-                        <span class="recipe-tag">Dinner</span>
+                        <span class="recipe-tag">Snack</span>
                     </div>
-                    <h3 class="recipe-title">Mum's Butter Chicken</h3>
-                    <p class="recipe-desc">A family recipe passed down through generations, with my own modern twist on the classic sauce.</p>
+                    <h3 class="recipe-title">Scottish Shortbread</h3>
+                    <p class="recipe-desc">A simple ratio of butter, sugar, and flour creating a rich, crumbly treat.</p>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Prep Time</span>
-                            <span class="recipe-meta-value">30 mins</span>
+                            <span class="recipe-meta-value">20 mins</span>
                         </div>
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Cook Time</span>
-                            <span class="recipe-meta-value">45 mins</span>
+                            <span class="recipe-meta-value">20 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Easy</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 2 ========== -->
+            <article class="recipe-card visible" data-tags="sauce" onclick="openRecipeModal(1)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1625989803651-f57135dc1d64?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cranberry Sauce" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Sauce</span>
+                    </div>
+                    <h3 class="recipe-title">Cranberry Sauce</h3>
+                    <p class="recipe-desc">Simple, sweet and slightly tart cranberry sauce.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">15 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Bake Time</span>
+                            <span class="recipe-meta-value">25 mins</span>
                         </div>
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Difficulty</span>
@@ -206,36 +235,11 @@
                 </div>
             </article>
 
-            <!-- ========== RECIPE 2 ========== -->
-            <article class="recipe-card visible" data-tags="sweet,snack" onclick="openRecipeModal(1)">
-                <div class="recipe-image">RECIPE PHOTO</div>
-                <div class="recipe-content">
-                    <div class="recipe-tags">
-                        <span class="recipe-tag">Sweet</span>
-                        <span class="recipe-tag">Snack</span>
-                    </div>
-                    <h3 class="recipe-title">Cardamom Rose Cake</h3>
-                    <p class="recipe-desc">Three layers of sponge infused with cardamom, topped with rose buttercream and pistachios.</p>
-                    <div class="recipe-meta">
-                        <div class="recipe-meta-item">
-                            <span class="recipe-meta-label">Prep Time</span>
-                            <span class="recipe-meta-value">1 hour</span>
-                        </div>
-                        <div class="recipe-meta-item">
-                            <span class="recipe-meta-label">Bake Time</span>
-                            <span class="recipe-meta-value">35 mins</span>
-                        </div>
-                        <div class="recipe-meta-item">
-                            <span class="recipe-meta-label">Difficulty</span>
-                            <span class="recipe-meta-value">Advanced</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
             <!-- ========== RECIPE 3 ========== -->
             <article class="recipe-card visible" data-tags="savoury,lunch,snack" onclick="openRecipeModal(2)">
-                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-image">
+                    <img src="" alt="Spiced Lamb Flatbreads" style="width:100%;height:100%;object-fit:cover;">
+                </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Savoury</span>
@@ -262,7 +266,9 @@
 
             <!-- ========== RECIPE 4 ========== -->
             <article class="recipe-card" data-tags="breakfast,sweet" onclick="openRecipeModal(3)">
-                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-image">
+                    <img src="" alt="Fluffy Pancake Stack" style="width:100%;height:100%;object-fit:cover;">
+                </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Breakfast</span>
@@ -289,7 +295,9 @@
 
             <!-- ========== RECIPE 5 ========== -->
             <article class="recipe-card" data-tags="drink" onclick="openRecipeModal(4)">
-                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-image">
+                    <img src="" alt="Spiced Hot Chocolate" style="width:100%;height:100%;object-fit:cover;">
+                </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Drink</span>
@@ -315,7 +323,9 @@
 
             <!-- ========== RECIPE 6 ========== -->
             <article class="recipe-card" data-tags="savoury,dinner" onclick="openRecipeModal(5)">
-                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-image">
+                    <img src="" alt="Homemade Ramen" style="width:100%;height:100%;object-fit:cover;">
+                </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Savoury</span>
@@ -348,7 +358,7 @@
     </section>
 
     <footer>
-        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-brand">Sachin <span>B</span></div>
         <div class="footer-links">
             <a href="../index.html">Home</a>
             <a href="story.html">Story</a>
@@ -358,7 +368,7 @@
             <a href="projects.html">Projects</a>
             <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
         </div>
-        <p class="footer-copyright">© 2025 Sachin Bhasin. All rights reserved.</p>
+        <p class="footer-copyright">© 2025 Sachin B. All rights reserved.</p>
     </footer>
 
     <!-- Recipe Modal -->
@@ -414,12 +424,13 @@
         ================================================================ */
         const recipes = [
             {
-                title: "Mum's Butter Chicken",
+                title: "Scottish Shortbread",
                 tags: ["Savoury", "Dinner"],
                 prep: "30 mins",
                 cook: "45 mins",
                 difficulty: "Medium",
                 servings: "4",
+                image: "assets/Shortbread.jpg",  // Add image path here, e.g., "../assets/butter-chicken.jpg"
                 description: "A family recipe passed down through generations. This butter chicken has the perfect balance of spices, tomato, and cream.",
                 ingredients: `<ul>
                     <li>500g chicken breast, cubed</li>
@@ -436,23 +447,28 @@
                 instructions: `<p>Marinate the chicken in yogurt and spices for at least 2 hours. Fry the onions until golden, add garlic and spices. Add tomatoes and simmer for 20 minutes. Stir in cream and butter, add chicken and cook until done. Garnish with fresh coriander and serve with basmati rice.</p>`
             },
             {
-                title: "Cardamom Rose Cake",
-                tags: ["Sweet", "Snack"],
-                prep: "1 hour",
-                cook: "35 mins",
-                difficulty: "Advanced",
-                servings: "12",
-                description: "Three layers of fragrant cardamom sponge, filled and topped with rose buttercream and crushed pistachios.",
+                title: "Cranberry Sauce",
+                tags: ["Sauce"],
+                prep: "15 mins",
+                cook: "25 mins",
+                difficulty: "Medium",
+                servings: "40",
+                image: "https://plus.unsplash.com/premium_photo-1674347953907-5518c9ff379d?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",  // Add image path here
+                description: "Simple, sweet and slightly tart cranberry sauce.",
                 ingredients: `<ul>
-                    <li>300g self-raising flour</li>
-                    <li>250g caster sugar</li>
-                    <li>250g butter, softened</li>
-                    <li>4 large eggs</li>
-                    <li>2 tsp ground cardamom</li>
-                    <li>1 tsp rose water</li>
-                    <li>200ml buttermilk</li>
-                    <li>400g icing sugar (for buttercream)</li>
-                    <li>Pistachios for decoration</li>
+                    <li>500g fresh cranberries</li>
+                    <li>300g caster sugar</li>
+                    <li>1.5 teaspoon finely grated lemon zest</li>
+                    <li>3 tablespoons of water</li>
+                    <li>100g brown sugar</li>
+                    <li>80g light brown sugar</li>
+                    <li>45g dijon mustard</li>
+                    <li>45g red win vinegar</li>
+                    <li>42g extra virgin olive oil</li>
+                    <li>30g finely chopped shallots</li>
+                    <li>1.5 teaspoon chopped fresh thyme</li>
+                    <li>1.5 teaspoon finely grated fresh ginger</li>
+                    <li>1 teaspoon fine sea salt</li>
                 </ul>`,
                 instructions: `<p>Cream butter and sugar until fluffy. Add eggs one at a time. Fold in flour and cardamom. Add buttermilk and rose water. Divide between three tins and bake at 180°C for 25-30 minutes. Make buttercream with butter, icing sugar, and rose water. Layer and decorate with crushed pistachios.</p>`
             },
@@ -463,6 +479,7 @@
                 cook: "15 mins",
                 difficulty: "Easy",
                 servings: "4",
+                image: "",  // Add image path here
                 description: "Quick and delicious flatbreads topped with spiced lamb mince, fresh herbs, and cooling mint yogurt.",
                 ingredients: `<ul>
                     <li>4 flatbreads</li>
@@ -483,6 +500,7 @@
                 cook: "15 mins",
                 difficulty: "Easy",
                 servings: "2",
+                image: "",  // Add image path here
                 description: "Light, fluffy American-style pancakes that are perfect for a lazy weekend breakfast.",
                 ingredients: `<ul>
                     <li>200g plain flour</li>
@@ -503,6 +521,7 @@
                 cook: "10 mins",
                 difficulty: "Easy",
                 servings: "2",
+                image: "",  // Add image path here
                 description: "Rich, velvety hot chocolate with warming spices—perfect for cold evenings.",
                 ingredients: `<ul>
                     <li>500ml whole milk</li>
@@ -522,6 +541,7 @@
                 cook: "8 hours",
                 difficulty: "Advanced",
                 servings: "4",
+                image: "",  // Add image path here
                 description: "A labour of love—rich tonkotsu broth with all the traditional toppings.",
                 ingredients: `<ul>
                     <li>1kg pork bones</li>
@@ -613,7 +633,14 @@
             document.getElementById('modalCook').textContent = recipe.cook;
             document.getElementById('modalDifficulty').textContent = recipe.difficulty;
             document.getElementById('modalServings').textContent = recipe.servings;
-            document.getElementById('modalRecipeImage').textContent = recipe.title.toUpperCase();
+            
+            // Display full image in modal with object-fit: contain to show entire image
+            const imageContainer = document.querySelector('.modal-image');
+            if (recipe.image) {
+                imageContainer.innerHTML = `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;height:100%;object-fit:contain;">`;
+            } else {
+                imageContainer.innerHTML = `<div class="modal-image-placeholder">${recipe.title.toUpperCase()}</div>`;
+            }
             
             document.getElementById('modalTags').innerHTML = recipe.tags.map(tag => 
                 `<span class="recipe-tag">${tag}</span>`
