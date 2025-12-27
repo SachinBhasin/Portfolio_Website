@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Kitchen | Sachin Bhasin</title>
+    <link rel="icon" type="image/png" href="../camera.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #f5f5f0;
+            --text-secondary: #a8a8a0;
+            --text-muted: #6b6b65;
+            --accent: #d4a574;
+            --accent-hover: #e8c4a0;
+            --border: #2a2a2a;
+            --overlay: rgba(10, 10, 10, 0.95);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Cormorant Garamond', Georgia, serif; background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1000; }
+
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%); }
+        .nav-title { display: flex; align-items: baseline; gap: 0.5rem; }
+        .nav-title .my { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); }
+        .nav-dropdown { position: relative; }
+        .nav-current { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); cursor: pointer; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; }
+        .nav-dropdown:hover .nav-current { border-bottom-color: var(--accent); }
+        .nav-dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--bg-secondary); border: 1px solid var(--border); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+        .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-dropdown-menu a { display: block; padding: 1rem 1.5rem; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: all 0.2s ease; border-left: 3px solid transparent; }
+        .nav-dropdown-menu a:hover { background: var(--bg-tertiary); color: var(--accent); border-left-color: var(--accent); padding-left: 2rem; }
+        .nav-dropdown-menu a.active { color: var(--accent); border-left-color: var(--accent); }
+        .blog-btn { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg-primary); background: var(--accent); padding: 1rem 2rem; border: none; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
+        .blog-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent-hover); transition: left 0.3s ease; }
+        .blog-btn:hover::before { left: 0; }
+        .blog-btn span { position: relative; z-index: 1; }
+
+        .page-hero { min-height: 60vh; display: flex; align-items: flex-end; padding: 8rem 4rem 4rem; }
+        .page-hero-content { max-width: 800px; }
+        .page-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.2s; }
+        .page-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; line-height: 1.1; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.4s; }
+        .page-title span { font-style: italic; color: var(--accent); }
+        .page-intro { font-size: 1.3rem; color: var(--text-secondary); max-width: 600px; margin-top: 2rem; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.6s; }
+
+        .recipes-section { padding: 6rem 4rem; }
+        .section-header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .section-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; }
+        .section-title span { font-style: italic; color: var(--accent); }
+
+        .filters-container { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .filter-btn { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.25rem; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
+        .clear-filters { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.25rem; border: none; background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; margin-left: auto; display: none; }
+        .clear-filters:hover { color: var(--accent); }
+        .clear-filters.visible { display: block; }
+
+        .recipes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .recipe-card { border: 1px solid var(--border); transition: all 0.4s ease; display: none; cursor: pointer; }
+        .recipe-card.visible { display: block; }
+        .recipe-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .recipe-image { aspect-ratio: 16/10; background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--text-muted); overflow: hidden; }
+        .recipe-image img { width: 100%; height: 100%; object-fit: cover; }
+        .recipe-content { padding: 2rem; }
+        .recipe-tags { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .recipe-tag { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+        .recipe-title { font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; }
+        .recipe-desc { font-size: 1rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .recipe-meta { display: flex; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .recipe-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+        .recipe-meta-label { font-family: 'Syne', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+        .recipe-meta-value { font-size: 0.95rem; color: var(--text-secondary); }
+
+        .show-more-container { text-align: center; margin-top: 3rem; }
+        .show-more-btn { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); background: transparent; padding: 1.25rem 3rem; border: 1px solid var(--accent); cursor: pointer; transition: all 0.3s ease; }
+        .show-more-btn:hover { background: var(--accent); color: var(--bg-primary); }
+        .show-more-btn.hidden { display: none; }
+
+        /* Recipe Modal */
+        .modal { position: fixed; inset: 0; background: var(--overlay); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding: 2rem; }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content { display: grid; grid-template-columns: 1fr 450px; max-width: 1400px; max-height: 90vh; width: 100%; background: var(--bg-secondary); transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .modal.active .modal-content { transform: scale(1); }
+        .modal-image { position: relative; overflow: hidden; background: var(--bg-primary); }
+        .modal-image-placeholder { width: 100%; height: 100%; min-height: 500px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--text-muted); background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%); }
+        .modal-details { padding: 3rem; display: flex; flex-direction: column; border-left: 1px solid var(--border); overflow-y: auto; max-height: 90vh; }
+        .modal-close { position: absolute; top: 2rem; right: 2rem; width: 50px; height: 50px; background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-primary); cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
+        .modal-close:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+        .modal-header { margin-bottom: 2rem; }
+        .modal-tags { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .modal-title { font-size: 2rem; font-weight: 300; margin-bottom: 1rem; }
+        .modal-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .modal-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+        .modal-meta-label { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+        .modal-meta-value { font-size: 0.95rem; color: var(--text-secondary); }
+        .modal-divider { height: 1px; background: var(--border); margin: 2rem 0; }
+        .modal-body { flex: 1; }
+        .modal-body h4 { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; margin-top: 1.5rem; }
+        .modal-body h4:first-child { margin-top: 0; }
+        .modal-body p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; }
+        .modal-body ul { font-size: 1.05rem; color: var(--text-secondary); line-height: 2; padding-left: 1.5rem; }
+
+        footer { padding: 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-brand { font-size: 1.5rem; font-weight: 300; }
+        .footer-brand span { font-style: italic; color: var(--accent); }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copyright { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 1024px) {
+            .modal-content { grid-template-columns: 1fr; }
+            .modal-image { display: none; }
+        }
+        @media (max-width: 768px) {
+            header { padding: 1.5rem 2rem; }
+            .page-hero { padding: 6rem 2rem 4rem; }
+            .recipes-section { padding: 4rem 2rem; }
+            .recipes-grid { grid-template-columns: 1fr; }
+            .filters-container { gap: 0.75rem; }
+            .filter-btn { padding: 0.6rem 1rem; font-size: 0.65rem; }
+            footer { flex-direction: column; gap: 2rem; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+            .modal-details { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-title">
+            <span class="my">My</span>
+            <div class="nav-dropdown">
+                <span class="nav-current">Kitchen</span>
+                <div class="nav-dropdown-menu">
+                    <a href="../index.html">My Life</a>
+                    <a href="story.html">My Story</a>
+                    <a href="happy.html">My Hobbies</a>
+                    <a href="kitchen.html" class="active">My Kitchen</a>
+                    <a href="blog.html">My Blog</a>
+                    <a href="projects.html">My Projects</a>
+                    <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">My Shop ↗</a>
+                </div>
+            </div>
+        </div>
+        <a href="blog.html" class="blog-btn"><span>Read My Blog</span></a>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <p class="page-label">Where Creativity Meets Flavour</p>
+            <h1 class="page-title">My <span>Kitchen</span></h1>
+            <p class="page-intro">Cooking is just photography for the taste buds—capturing the perfect balance of ingredients, timing, and presentation to tell a story on a plate.</p>
+        </div>
+    </section>
+
+    <section class="recipes-section">
+        <div class="section-header">
+            <h2 class="section-title">Featured <span>Recipes</span></h2>
+        </div>
+
+        <div class="filters-container">
+            <button class="filter-btn" data-filter="sweet">Sweet</button>
+            <button class="filter-btn" data-filter="savoury">Savoury</button>
+            <button class="filter-btn" data-filter="breakfast">Breakfast</button>
+            <button class="filter-btn" data-filter="lunch">Lunch</button>
+            <button class="filter-btn" data-filter="dinner">Dinner</button>
+            <button class="filter-btn" data-filter="snack">Snack</button>
+            <button class="filter-btn" data-filter="drink">Drink</button>
+            <button class="clear-filters" onclick="clearFilters()">Clear All ✕</button>
+        </div>
+
+        <div class="recipes-grid">
+
+            <!-- ========== RECIPE 1 ========== -->
+            <article class="recipe-card visible" data-tags="savoury,dinner" onclick="openRecipeModal(0)">
+                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Savoury</span>
+                        <span class="recipe-tag">Dinner</span>
+                    </div>
+                    <h3 class="recipe-title">Mum's Butter Chicken</h3>
+                    <p class="recipe-desc">A family recipe passed down through generations, with my own modern twist on the classic sauce.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">30 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Cook Time</span>
+                            <span class="recipe-meta-value">45 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Medium</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 2 ========== -->
+            <article class="recipe-card visible" data-tags="sweet,snack" onclick="openRecipeModal(1)">
+                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Sweet</span>
+                        <span class="recipe-tag">Snack</span>
+                    </div>
+                    <h3 class="recipe-title">Cardamom Rose Cake</h3>
+                    <p class="recipe-desc">Three layers of sponge infused with cardamom, topped with rose buttercream and pistachios.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">1 hour</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Bake Time</span>
+                            <span class="recipe-meta-value">35 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Advanced</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 3 ========== -->
+            <article class="recipe-card visible" data-tags="savoury,lunch,snack" onclick="openRecipeModal(2)">
+                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Savoury</span>
+                        <span class="recipe-tag">Lunch</span>
+                    </div>
+                    <h3 class="recipe-title">Spiced Lamb Flatbreads</h3>
+                    <p class="recipe-desc">Homemade flatbreads loaded with spiced lamb mince, fresh herbs, and a drizzle of mint yogurt.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">20 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Cook Time</span>
+                            <span class="recipe-meta-value">15 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Easy</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 4 ========== -->
+            <article class="recipe-card" data-tags="breakfast,sweet" onclick="openRecipeModal(3)">
+                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Breakfast</span>
+                        <span class="recipe-tag">Sweet</span>
+                    </div>
+                    <h3 class="recipe-title">Fluffy Pancake Stack</h3>
+                    <p class="recipe-desc">Light, fluffy American-style pancakes served with maple syrup, fresh berries, and a dusting of icing sugar.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">10 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Cook Time</span>
+                            <span class="recipe-meta-value">15 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Easy</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 5 ========== -->
+            <article class="recipe-card" data-tags="drink" onclick="openRecipeModal(4)">
+                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Drink</span>
+                    </div>
+                    <h3 class="recipe-title">Spiced Hot Chocolate</h3>
+                    <p class="recipe-desc">Rich, velvety hot chocolate with a hint of cinnamon, chilli, and topped with homemade marshmallows.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">5 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Cook Time</span>
+                            <span class="recipe-meta-value">10 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Easy</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 6 ========== -->
+            <article class="recipe-card" data-tags="savoury,dinner" onclick="openRecipeModal(5)">
+                <div class="recipe-image">RECIPE PHOTO</div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
+                        <span class="recipe-tag">Savoury</span>
+                        <span class="recipe-tag">Dinner</span>
+                    </div>
+                    <h3 class="recipe-title">Homemade Ramen</h3>
+                    <p class="recipe-desc">A slow-cooked tonkotsu broth with hand-pulled noodles, soft-boiled eggs, and tender chashu pork.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">1 hour</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Cook Time</span>
+                            <span class="recipe-meta-value">8 hours</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Advanced</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="show-more-container">
+            <button class="show-more-btn" onclick="showMoreRecipes()">Show More Recipes</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="story.html">Story</a>
+            <a href="happy.html">Hobbies</a>
+            <a href="kitchen.html">Kitchen</a>
+            <a href="blog.html">Blog</a>
+            <a href="projects.html">Projects</a>
+            <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
+        </div>
+        <p class="footer-copyright">© 2025 Sachin Bhasin. All rights reserved.</p>
+    </footer>
+
+    <!-- Recipe Modal -->
+    <div class="modal" id="recipeModal">
+        <button class="modal-close" onclick="closeRecipeModal()">×</button>
+        <div class="modal-content">
+            <div class="modal-image">
+                <div class="modal-image-placeholder" id="modalRecipeImage">RECIPE IMAGE</div>
+            </div>
+            <div class="modal-details">
+                <div class="modal-header">
+                    <div class="modal-tags" id="modalTags"></div>
+                    <h2 class="modal-title" id="modalTitle">Recipe Title</h2>
+                    <div class="modal-meta">
+                        <div class="modal-meta-item">
+                            <span class="modal-meta-label">Prep Time</span>
+                            <span class="modal-meta-value" id="modalPrep">--</span>
+                        </div>
+                        <div class="modal-meta-item">
+                            <span class="modal-meta-label">Cook Time</span>
+                            <span class="modal-meta-value" id="modalCook">--</span>
+                        </div>
+                        <div class="modal-meta-item">
+                            <span class="modal-meta-label">Difficulty</span>
+                            <span class="modal-meta-value" id="modalDifficulty">--</span>
+                        </div>
+                        <div class="modal-meta-item">
+                            <span class="modal-meta-label">Servings</span>
+                            <span class="modal-meta-value" id="modalServings">--</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ================================================================
+           RECIPE DATA - UPDATE THIS ARRAY WITH YOUR RECIPES
+           
+           Each object contains:
+           - title: Recipe name
+           - tags: Array of category tags
+           - prep: Prep time
+           - cook: Cook time
+           - difficulty: Easy/Medium/Advanced
+           - servings: Number of servings
+           - description: Brief intro
+           - ingredients: HTML string of ingredients
+           - instructions: HTML string of method steps
+        ================================================================ */
+        const recipes = [
+            {
+                title: "Mum's Butter Chicken",
+                tags: ["Savoury", "Dinner"],
+                prep: "30 mins",
+                cook: "45 mins",
+                difficulty: "Medium",
+                servings: "4",
+                description: "A family recipe passed down through generations. This butter chicken has the perfect balance of spices, tomato, and cream.",
+                ingredients: `<ul>
+                    <li>500g chicken breast, cubed</li>
+                    <li>200ml double cream</li>
+                    <li>400g tinned tomatoes</li>
+                    <li>2 tbsp butter</li>
+                    <li>1 onion, finely diced</li>
+                    <li>4 cloves garlic, minced</li>
+                    <li>2 tsp garam masala</li>
+                    <li>1 tsp turmeric</li>
+                    <li>1 tsp cumin</li>
+                    <li>Fresh coriander to garnish</li>
+                </ul>`,
+                instructions: `<p>Marinate the chicken in yogurt and spices for at least 2 hours. Fry the onions until golden, add garlic and spices. Add tomatoes and simmer for 20 minutes. Stir in cream and butter, add chicken and cook until done. Garnish with fresh coriander and serve with basmati rice.</p>`
+            },
+            {
+                title: "Cardamom Rose Cake",
+                tags: ["Sweet", "Snack"],
+                prep: "1 hour",
+                cook: "35 mins",
+                difficulty: "Advanced",
+                servings: "12",
+                description: "Three layers of fragrant cardamom sponge, filled and topped with rose buttercream and crushed pistachios.",
+                ingredients: `<ul>
+                    <li>300g self-raising flour</li>
+                    <li>250g caster sugar</li>
+                    <li>250g butter, softened</li>
+                    <li>4 large eggs</li>
+                    <li>2 tsp ground cardamom</li>
+                    <li>1 tsp rose water</li>
+                    <li>200ml buttermilk</li>
+                    <li>400g icing sugar (for buttercream)</li>
+                    <li>Pistachios for decoration</li>
+                </ul>`,
+                instructions: `<p>Cream butter and sugar until fluffy. Add eggs one at a time. Fold in flour and cardamom. Add buttermilk and rose water. Divide between three tins and bake at 180°C for 25-30 minutes. Make buttercream with butter, icing sugar, and rose water. Layer and decorate with crushed pistachios.</p>`
+            },
+            {
+                title: "Spiced Lamb Flatbreads",
+                tags: ["Savoury", "Lunch"],
+                prep: "20 mins",
+                cook: "15 mins",
+                difficulty: "Easy",
+                servings: "4",
+                description: "Quick and delicious flatbreads topped with spiced lamb mince, fresh herbs, and cooling mint yogurt.",
+                ingredients: `<ul>
+                    <li>4 flatbreads</li>
+                    <li>400g lamb mince</li>
+                    <li>1 tsp cumin</li>
+                    <li>1 tsp coriander</li>
+                    <li>1/2 tsp chilli flakes</li>
+                    <li>Fresh mint and parsley</li>
+                    <li>150g Greek yogurt</li>
+                    <li>1 lemon</li>
+                </ul>`,
+                instructions: `<p>Brown the lamb mince with spices until cooked through. Warm flatbreads in a dry pan. Mix yogurt with chopped mint and lemon juice. Top flatbreads with lamb, drizzle with mint yogurt, and finish with fresh herbs.</p>`
+            },
+            {
+                title: "Fluffy Pancake Stack",
+                tags: ["Breakfast", "Sweet"],
+                prep: "10 mins",
+                cook: "15 mins",
+                difficulty: "Easy",
+                servings: "2",
+                description: "Light, fluffy American-style pancakes that are perfect for a lazy weekend breakfast.",
+                ingredients: `<ul>
+                    <li>200g plain flour</li>
+                    <li>2 tbsp caster sugar</li>
+                    <li>2 tsp baking powder</li>
+                    <li>1 egg</li>
+                    <li>250ml milk</li>
+                    <li>30g melted butter</li>
+                    <li>Maple syrup to serve</li>
+                    <li>Fresh berries</li>
+                </ul>`,
+                instructions: `<p>Mix dry ingredients. Whisk egg, milk, and melted butter. Combine wet and dry until just mixed (lumps are fine). Cook spoonfuls in a buttered pan until bubbles form, then flip. Stack and serve with maple syrup and fresh berries.</p>`
+            },
+            {
+                title: "Spiced Hot Chocolate",
+                tags: ["Drink"],
+                prep: "5 mins",
+                cook: "10 mins",
+                difficulty: "Easy",
+                servings: "2",
+                description: "Rich, velvety hot chocolate with warming spices—perfect for cold evenings.",
+                ingredients: `<ul>
+                    <li>500ml whole milk</li>
+                    <li>100g dark chocolate, chopped</li>
+                    <li>1/2 tsp cinnamon</li>
+                    <li>Pinch of chilli flakes</li>
+                    <li>1 tbsp sugar</li>
+                    <li>Whipped cream</li>
+                    <li>Marshmallows</li>
+                </ul>`,
+                instructions: `<p>Heat milk with cinnamon and chilli until simmering. Remove from heat and add chopped chocolate, stirring until melted. Add sugar to taste. Pour into mugs and top with whipped cream and marshmallows.</p>`
+            },
+            {
+                title: "Homemade Ramen",
+                tags: ["Savoury", "Dinner"],
+                prep: "1 hour",
+                cook: "8 hours",
+                difficulty: "Advanced",
+                servings: "4",
+                description: "A labour of love—rich tonkotsu broth with all the traditional toppings.",
+                ingredients: `<ul>
+                    <li>1kg pork bones</li>
+                    <li>500g pork belly</li>
+                    <li>4 portions fresh ramen noodles</li>
+                    <li>4 soft-boiled eggs</li>
+                    <li>Nori sheets</li>
+                    <li>Spring onions</li>
+                    <li>Soy sauce</li>
+                    <li>Mirin</li>
+                    <li>Garlic and ginger</li>
+                </ul>`,
+                instructions: `<p>Blanch pork bones, then simmer in fresh water for 8+ hours until milky white. Braise pork belly in soy, mirin, and sugar. Marinate soft-boiled eggs in soy mixture. Cook noodles, assemble bowls with broth, sliced chashu, egg, nori, and spring onions.</p>`
+            }
+        ];
+
+        let activeFilters = [];
+        let allShown = false;
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                if (activeFilters.includes(filter)) {
+                    activeFilters = activeFilters.filter(f => f !== filter);
+                    this.classList.remove('active');
+                } else {
+                    activeFilters.push(filter);
+                    this.classList.add('active');
+                }
+                updateClearButton();
+                filterRecipes();
+            });
+        });
+
+        function filterRecipes() {
+            const cards = document.querySelectorAll('.recipe-card');
+            cards.forEach((card, index) => {
+                const tags = card.dataset.tags.split(',');
+                if (activeFilters.length === 0) {
+                    if (allShown || index < 3) {
+                        card.classList.add('visible');
+                    } else {
+                        card.classList.remove('visible');
+                    }
+                } else {
+                    const matches = activeFilters.some(filter => tags.includes(filter));
+                    if (matches) {
+                        card.classList.add('visible');
+                    } else {
+                        card.classList.remove('visible');
+                    }
+                }
+            });
+            updateShowMoreButton();
+        }
+
+        function updateClearButton() {
+            const clearBtn = document.querySelector('.clear-filters');
+            clearBtn.classList.toggle('visible', activeFilters.length > 0);
+        }
+
+        function clearFilters() {
+            activeFilters = [];
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            updateClearButton();
+            filterRecipes();
+        }
+
+        function showMoreRecipes() {
+            allShown = true;
+            document.querySelectorAll('.recipe-card').forEach(card => {
+                if (activeFilters.length === 0) card.classList.add('visible');
+            });
+            document.querySelector('.show-more-btn').classList.add('hidden');
+        }
+
+        function updateShowMoreButton() {
+            const btn = document.querySelector('.show-more-btn');
+            const hiddenCards = document.querySelectorAll('.recipe-card:not(.visible)');
+            btn.classList.toggle('hidden', activeFilters.length > 0 || allShown || hiddenCards.length === 0);
+        }
+
+        function openRecipeModal(index) {
+            const modal = document.getElementById('recipeModal');
+            const recipe = recipes[index];
+            
+            document.getElementById('modalTitle').textContent = recipe.title;
+            document.getElementById('modalPrep').textContent = recipe.prep;
+            document.getElementById('modalCook').textContent = recipe.cook;
+            document.getElementById('modalDifficulty').textContent = recipe.difficulty;
+            document.getElementById('modalServings').textContent = recipe.servings;
+            document.getElementById('modalRecipeImage').textContent = recipe.title.toUpperCase();
+            
+            document.getElementById('modalTags').innerHTML = recipe.tags.map(tag => 
+                `<span class="recipe-tag">${tag}</span>`
+            ).join('');
+            
+            document.getElementById('modalBody').innerHTML = `
+                <p>${recipe.description}</p>
+                <h4>Ingredients</h4>
+                ${recipe.ingredients}
+                <h4>Method</h4>
+                ${recipe.instructions}
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRecipeModal() {
+            document.getElementById('recipeModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('recipeModal').addEventListener('click', function(e) {
+            if (e.target === this) closeRecipeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeRecipeModal();
+        });
+    </script>
+
+</body>
+</html>
