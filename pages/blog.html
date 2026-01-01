@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sachin Bhasin | Blog</title>
-    <link rel="icon" type="image/png" href="pages/assets/Favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -19,110 +22,671 @@
             --border: #2a2a2a;
             --overlay: rgba(10, 10, 10, 0.95);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Cormorant Garamond', Georgia, serif; background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1000; }
 
-        header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%); }
-        .nav-title { display: flex; align-items: baseline; gap: 0.5rem; }
-        .nav-title .my { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); }
-        .nav-dropdown { position: relative; }
-        .nav-current { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); cursor: pointer; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; }
-        .nav-dropdown:hover .nav-current { border-bottom-color: var(--accent); }
-        .nav-dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--bg-secondary); border: 1px solid var(--border); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
-        .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-dropdown-menu a { display: block; padding: 1rem 1.5rem; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: all 0.2s ease; border-left: 3px solid transparent; }
-        .nav-dropdown-menu a:hover { background: var(--bg-tertiary); color: var(--accent); border-left-color: var(--accent); padding-left: 2rem; }
-        .nav-dropdown-menu a.active { color: var(--accent); border-left-color: var(--accent); }
-        .blog-btn { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg-primary); background: var(--accent); padding: 1rem 2rem; border: none; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
-        .blog-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent-hover); transition: left 0.3s ease; }
-        .blog-btn:hover::before { left: 0; }
-        .blog-btn span { position: relative; z-index: 1; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .page-hero { min-height: 60vh; display: flex; align-items: flex-end; padding: 8rem 4rem 4rem; }
-        .page-hero-content { max-width: 800px; }
-        .page-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.2s; }
-        .page-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; line-height: 1.1; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.4s; }
-        .page-title span { font-style: italic; color: var(--accent); }
-        .page-intro { font-size: 1.3rem; color: var(--text-secondary); max-width: 600px; margin-top: 2rem; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.6s; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .blog-section { padding: 6rem 4rem; }
-        .blog-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; max-width: 1400px; margin: 0 auto; }
-        .blog-posts { display: flex; flex-direction: column; gap: 3rem; }
-        .blog-post { border: 1px solid var(--border); transition: all 0.4s ease; cursor: pointer; }
-        .blog-post:hover { border-color: var(--accent); }
-        .blog-post-image { aspect-ratio: 21/9; background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--text-muted); overflow: hidden; }
-        .blog-post-image img { width: 100%; height: 100%; object-fit: cover; }
-        .blog-post-content { padding: 2.5rem; }
-        .blog-post-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
-        .blog-post-date { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
-        .blog-post-category { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-        .blog-post-readtime { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); background: var(--bg-tertiary); padding: 0.3rem 0.8rem; border-radius: 2px; }
-        .blog-post-title { font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; }
-        .blog-post-excerpt { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8; }
-        .read-more { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.3s ease; }
-        .read-more:hover { gap: 1rem; }
-        .read-more::after { content: '→'; }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-        .blog-sidebar { display: flex; flex-direction: column; gap: 3rem; }
-        .sidebar-widget { padding: 2rem; border: 1px solid var(--border); }
-        .widget-title { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
-        .goals-list { list-style: none; }
-        .goals-list li { padding: 1rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 1rem; }
-        .goals-list li:last-child { border-bottom: none; }
-        .goal-check { width: 20px; height: 20px; border: 1px solid var(--border); border-radius: 50%; flex-shrink: 0; margin-top: 0.25rem; }
-        .goal-check.done { background: var(--accent); border-color: var(--accent); }
-        .goal-text { font-size: 1rem; color: var(--text-secondary); }
-        .categories-list { display: flex; flex-direction: column; gap: 0.75rem; }
-        .category-link { font-size: 1rem; color: var(--text-secondary); text-decoration: none; display: flex; justify-content: space-between; transition: color 0.3s ease; }
-        .category-link:hover { color: var(--accent); }
-        .category-count { font-family: 'Syne', sans-serif; font-size: 0.7rem; color: var(--text-muted); }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
 
-        /* Blog Post Modal */
-        .modal { position: fixed; inset: 0; background: var(--overlay); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding: 2rem; }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content { display: grid; grid-template-columns: 1fr 450px; max-width: 1400px; max-height: 90vh; width: 100%; background: var(--bg-secondary); transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .modal.active .modal-content { transform: scale(1); }
-        .modal-image { position: relative; overflow: hidden; background: var(--bg-primary); }
-        .modal-image-placeholder { width: 100%; height: 100%; min-height: 500px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--text-muted); background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%); }
-        .modal-details { padding: 3rem; display: flex; flex-direction: column; border-left: 1px solid var(--border); overflow-y: auto; max-height: 90vh; }
-        .modal-close { position: absolute; top: 2rem; right: 2rem; width: 50px; height: 50px; background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-primary); cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
-        .modal-close:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
-        .modal-header { margin-bottom: 2rem; }
-        .modal-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
-        .modal-title { font-size: 2rem; font-weight: 300; margin-bottom: 1rem; }
-        .modal-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
-        .modal-body { flex: 1; }
-        .modal-body p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.5rem; }
-        .modal-body p:last-child { margin-bottom: 0; }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+        }
 
-        footer { padding: 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .footer-brand { font-size: 1.5rem; font-weight: 300; }
-        .footer-brand span { font-style: italic; color: var(--accent); }
-        .footer-links { display: flex; gap: 2rem; }
-        .footer-links a { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-copyright { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+        .nav-title {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
 
-        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-title .my {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-current {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .nav-dropdown:hover .nav-current {
+            border-bottom-color: var(--accent);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--accent);
+            border-left-color: var(--accent);
+            padding-left: 2rem;
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        .blog-btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--accent);
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .blog-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.3s ease;
+        }
+
+        .blog-btn:hover::before {
+            left: 0;
+        }
+
+        .blog-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 8rem 4rem 4rem;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+        }
+
+        .page-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .page-title span {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .page-intro {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .blog-section {
+            padding: 6rem 4rem;
+        }
+
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .blog-post {
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .blog-post:hover {
+            border-color: var(--accent);
+        }
+
+        .blog-post-image {
+            position: relative;
+            aspect-ratio: 21/9;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            overflow: hidden;
+        }
+
+        .blog-post-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 2.5rem;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .blog-post-date {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .blog-post-category {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .blog-post-readtime {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+        }
+
+        .blog-post-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .read-more {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        .read-more::after {
+            content: '→';
+        }
+
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .sidebar-widget {
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .widget-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goals-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .goals-list li:last-child {
+            border-bottom: none;
+        }
+
+        .goal-check {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .goal-check.done {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .goal-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .categories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .category-link {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s ease;
+        }
+
+        .category-link:hover {
+            color: var(--accent);
+        }
+
+        .category-count {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Blog Post Modal - Banner Layout */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: var(--overlay);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            max-height: 90vh;
+            width: 100%;
+            background: var(--bg-secondary);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-banner {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .modal-banner-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+        }
+
+        .modal-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .modal-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 1.5rem 0;
+        }
+
+        .modal-body {
+            flex: 1;
+        }
+
+        .modal-body p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            padding: 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .footer-brand span {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copyright {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         @media (max-width: 1024px) {
-            .blog-layout { grid-template-columns: 1fr; }
-            .blog-sidebar { order: -1; }
-            .modal-content { grid-template-columns: 1fr; }
-            .modal-image { display: none; }
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-sidebar {
+                order: -1;
+            }
+
+            .modal-banner {
+                height: 200px;
+            }
         }
+
         @media (max-width: 768px) {
-            header { padding: 1.5rem 2rem; }
-            .page-hero { padding: 6rem 2rem 4rem; }
-            .blog-section { padding: 4rem 2rem; }
-            footer { flex-direction: column; gap: 2rem; text-align: center; }
-            .footer-links { flex-wrap: wrap; justify-content: center; }
-            .modal-details { padding: 2rem; }
+            header {
+                padding: 1.5rem 2rem;
+            }
+
+            .page-hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            .blog-section {
+                padding: 4rem 2rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .modal-details {
+                padding: 2rem;
+            }
+
+            .modal-banner {
+                height: 150px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -133,7 +697,7 @@
                 <div class="nav-dropdown-menu">
                     <a href="../index.html">My Life</a>
                     <a href="story.html">My Story</a>
-                    <a href="happy.html">My Hobbies</a>
+                    <a href="hobbies.html">My Hobbies</a>
                     <a href="kitchen.html">My Kitchen</a>
                     <a href="blog.html" class="active">My Blog</a>
                     <a href="projects.html">My Projects</a>
@@ -175,28 +739,47 @@
                 <!-- ========== BLOG POST 1 ========== -->
                 <article class="blog-post" onclick="openBlogModal(0)">
                     <!-- Image: Replace placeholder with <img src="YOUR_URL" alt="Post title"> -->
-                    <div class="blog-post-image">BLOG COVER IMAGE</div>
+                    <img src="https://live.staticflickr.com/65535/55017876808_38e4abb438_b.jpg" alt="Beechdean Motorsport Aston Martin 2024">
                     <div class="blog-post-content">
                         <div class="blog-post-meta">
-                            <span class="blog-post-date">December 15, 2025</span>
+                            <span class="blog-post-date">January 1, 2026</span>
                             <span class="blog-post-category">Goals</span>
                             <span class="blog-post-readtime">7 min read</span>
                         </div>
-                        <h2 class="blog-post-title">Setting Up for 2026: A Year of Intentional Growth</h2>
-                        <p class="blog-post-excerpt">As the year draws to a close, I've been reflecting on what I want 2026 to look like. It's time to stop treating photography as a side project and start treating it like the career I want it to be...</p>
+                        <h2 class="blog-post-title">Laying the Groundwork for 2026</h2>
+                        <p class="blog-post-excerpt">Instead of chasing big goals without foundations, I'm starting 2026 by building
+                            them right. From launching my photography shop to networking at Silverstone, I'm learning that failure is
+                            where growth begins...</p>
                         <span class="read-more">Continue Reading</span>
                     </div>
                 </article>
-
                 <!-- ========== ADD NEW BLOG POSTS ABOVE THIS LINE ========== -->
 
+                <article class="blog-post" onclick="openBlogModal(1)">
+                    <!-- Image: Replace placeholder with <img src="YOUR_URL" alt="Post title"> -->
+                    <img src="https://live.staticflickr.com/65535/55018015059_83db2f14b3_b.jpg"
+                        alt="North Yorkshire Flower">
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span class="blog-post-date">December 31, 2025</span>
+                            <span class="blog-post-category">Reflection</span>
+                            <span class="blog-post-readtime">7 min read</span>
+                        </div>
+                        <h2 class="blog-post-title">Understanding 2025 ahead of 2026</h2>
+                        <p class="blog-post-excerpt">Instead of chasing big goals without foundations, I'm starting 2026 by building
+                            them right. From launching my photography shop to networking at Silverstone, I'm learning that failure is
+                            where growth begins...</p>
+                        <span class="read-more">Continue Reading</span>
+                    </div>
+                </article>
             </div>
 
             <aside class="blog-sidebar">
                 <div class="sidebar-widget">
                     <h3 class="widget-title">2026 Goals</h3>
                     <ul class="goals-list">
-                        <li><span class="goal-check"></span><span class="goal-text">Complete photography portfolio</span></li>
+                        <li><span class="goal-check"></span><span class="goal-text">Complete photography
+                                portfolio</span></li>
                         <li><span class="goal-check done"></span><span class="goal-text">Launch personal website</span></li>
                         <li><span class="goal-check"></span><span class="goal-text">Book first paid client</span></li>
                         <li><span class="goal-check"></span><span class="goal-text">Master golden hour lighting</span></li>
@@ -204,10 +787,12 @@
                         <li><span class="goal-check"></span><span class="goal-text">Win sim racing league</span></li>
                     </ul>
                 </div>
-                
+
                 <div class="sidebar-widget">
                     <h3 class="widget-title">About This Blog</h3>
-                    <p style="font-size: 1rem; color: var(--text-secondary);">This blog is my accountability partner. I'm documenting my journey from aspiring photographer to working creative, one post at a time. Follow along as I chase my 2026 goals.</p>
+                    <p style="font-size: 1rem; color: var(--text-secondary);">This blog is my accountability partner.
+                        I'm documenting my journey from aspiring photographer to working creative, one post at a time.
+                        Follow along as I chase my 2026 goals.</p>
                 </div>
             </aside>
         </div>
@@ -218,7 +803,7 @@
         <div class="footer-links">
             <a href="../index.html">Home</a>
             <a href="story.html">Story</a>
-            <a href="happy.html">Hobbies</a>
+            <a href="hobbies.html">Hobbies</a>
             <a href="kitchen.html">Kitchen</a>
             <a href="blog.html">Blog</a>
             <a href="projects.html">Projects</a>
@@ -231,8 +816,8 @@
     <div class="modal" id="blogModal">
         <button class="modal-close" onclick="closeBlogModal()">×</button>
         <div class="modal-content">
-            <div class="modal-image">
-                <div class="modal-image-placeholder" id="modalBlogImage">BLOG IMAGE</div>
+            <div class="modal-banner">
+                <div class="modal-banner-placeholder" id="modalBlogImage">BLOG IMAGE</div>
             </div>
             <div class="modal-details">
                 <div class="modal-header">
@@ -268,37 +853,58 @@
            IMPORTANT: Keep the array index in sync with the HTML article order!
         ================================================================ */
         const blogPosts = [
-            // Post 1
+            // Post 0
             {
-                title: "Setting Up for 2026: A Year of Intentional Growth",
-                date: "December 15, 2025",
+                title: "Laying the Groundwork for 2026",
+                date: "1st January, 2026",
                 category: "Goals",
-                readTime: "7 min read",
+                readTime: "5 min read",
+                image: "https://live.staticflickr.com/65535/55017876808_38e4abb438_b.jpg",
                 content: `
-                    <p>As the year draws to a close, I've been reflecting on what I want 2026 to look like. It's time to stop treating photography as a side project and start treating it like the career I want it to be.</p>
-                    <p>For too long, I've been comfortable with the amateur label. "Oh, I'm just doing this for fun," I'd say, as if passion and profession were mutually exclusive. But here's what I've realized: the photographers I admire most aren't the ones with the fanciest gear or the biggest following—they're the ones who show up consistently, who treat their craft with respect, who put in the work when no one's watching.</p>
-                    <p>So what does intentional growth look like for me? First, it means setting clear, measurable goals. Not "get better at photography" but "complete one themed photo series per quarter." Not "post more" but "share three portfolio-worthy images per week with thoughtful captions."</p>
-                    <p>Second, it means investing in education. I've enrolled in two online courses—one on advanced lighting techniques and another on the business side of photography. Knowledge without application is worthless, but so is practice without direction.</p>
-                    <p>Third, it means building systems, not just setting goals. A goal is "I want to book clients." A system is "I reach out to three potential collaborators every week." Systems create momentum; goals just create pressure.</p>
-                    <p>This website is part of that system. It's my digital home, my portfolio, my voice. Unlike social media platforms that can change their algorithms overnight, this is mine. I control it. I own it.</p>
-                    <p>2026 is the year I stop waiting to be ready and start acting like I already am. The world doesn't need another photographer who's "thinking about going pro." It needs photographers who are actually doing the work.</p>
+                    <p>The start of a new year has always been something big to talk about on social media. "Time to reset that sleep schedule" or "Time to lock in on those big targets" but they seemingly always fall through the cracks too early in the year because of the failure to have the right foundations beneath them so that they can accomplish those particular goals. Whilst I am certainly not an expert on getting everything right, I definitely know that a building cannot be constructed to reach the sky without a solid foundation to hold up that growth. What I'm saying is that I need to make sure I stick with what I know and what's logical. So what foundations do I have to rely on or that I need to work on to improve before I start to get after my big goals?</p>
+                    <p>I know from university and from school before that, working on the foundations is important but let's highlight what I have in mind as my end goal. In an ideal and perfect world, I'd be taking nature and motorsport photography and selling them like hotcakes to the public. Definitely living in Scotland and I honestly do want to own a horse because I'd be able to. But we're not in an ideal world unfortunately but I can build my own world with everything I want or desire in it as best as I can with what time I have. In a way, I've now highlighted what I want as my end goals, so let's break it down to what needs to be done to get to that final position.</p>
+                    <p>Firstly, there is no point in dreaming about selling my work to anyone in the public if I don't have a shop going already. Thankfully I have a shop already but I've never had the guts to post my photos on there. It was never a matter of "I don't think I can do it" but more that I thought I'd do it too well and I wasn't sure what my next step was. Basically overthinking my steps and thinking that I always had to be several steps ahead when I try something. 2025 has proven to me that you can never anticipate what's going to happen and I'll go more into my reflection of 2025 in another post. So what's the first step? I've been asking myself this for the past month since first creating this website and it's quite simply to finally put up some photos in the shop for people to purchase. From there, I can receive feedback on my shop, my work and my prices. Only from failure will I learn how to do it the right way.</p>
+                    <p>The next stage in this journey would have to be networking. Talking to strangers became less of a problem for me since attending and completing university and I can be thankful to say that I did that on my own, there was no alcohol required to gain that confidence. Seems to be a trend in movies or films where a swig of alcohol, or liquid courage as it's sometimes portrayed, and BOOM, you can do anything. But it was never like that, I just had to think and understand that there may be others with anxiety like me and I can help them talk by opening up the conversation. All I simply had to do was put aside my fears and start a conversation, and most students at the time that I knew all played video games so it's not like it was really that hard to think of something. I honestly don't remember what games were coming out in Sept 2019 but there were still plenty to talk about for me to be able to start several conversations during many nights out. But back to the point at hand. Talking to strangers links to networking because I need to know how to start a conversation with people I've never met before in an industry that I have a profound passion and love for whilst avoiding the impression that I'm not just a kid who loves cars going vroom really loudly. I do have that really strong passion and love for the sport, and that's what I need to use to my advantage to talk to the teams and learn or get to know them.</p>
+                    <p>Over the two days spent with friends at Silverstone in 2024 for the British GT series, I actually managed to learn more about myself than I did about them because I suddenly realised that I had the confidence. So I quietly dared myself to push a little further and that gave me the opportunity of a lifetime... which I proceeded to fumble immediately, but I still learnt some great things. The story goes that in a conversation with an engineer, someone else approached me to ask who I was just as the conversation started. Shifting my attention to the gentleman, I realised he'd just told me that his son owns the team and he asked me if I wanted to try to sneak into the garage where the drivers were. Of course I was going to leap at the chance to do that and after being dragged quickly into the main part of the garage, I found myself within a few feet of the team's driver checking the timings board. That wasn't just any driver, THE Jessica Hawkins was standing right in front of me. She is a British professional racing driver and an ambassador for the Aston Martin Formula One Team. Sadly, whilst this was awesome and all, this is also where I fumbled so badly. Looking through my lens, I was able to see the timing screen through the reflection of her eyes and in the rush to capture the photo, I forgot to change my settings and increase the exposure. So whilst I may have an absolutely incredible story to tell, I have no photos to show for it because of that one simple mistake. But that's where the learning begins and understanding what to do at the next opportunity.</p>
                 `
             },
-            
+
             // ========== ADD NEW BLOG POST DATA ABOVE THIS LINE ==========
+            // Post 0
+            {
+                title: "Understanding 2025 ahead of 2026",
+                date: "31st December, 2025",
+                category: "Reflection",
+                readTime: "5 min read",
+                image: "https://live.staticflickr.com/65535/55018015059_83db2f14b3_b.jpg",
+                content: `
+                    <p>The start of a new year has always been something big to talk about on social media. "Time to reset that sleep schedule" or "Time to lock in on those big targets" but they seemingly always fall through the cracks too early in the year because of the failure to have the right foundations beneath them so that they can accomplish those particular goals. Whilst I am certainly not an expert on getting everything right, I definitely know that a building cannot be constructed to reach the sky without a solid foundation to hold up that growth. What I'm saying is that I need to make sure I stick with what I know and what's logical. So what foundations do I have to rely on or that I need to work on to improve before I start to get after my big goals?</p>
+                    <p>I know from university and from school before that, working on the foundations is important but let's highlight what I have in mind as my end goal. In an ideal and perfect world, I'd be taking nature and motorsport photography and selling them like hotcakes to the public. Definitely living in Scotland and I honestly do want to own a horse because I'd be able to. But we're not in an ideal world unfortunately but I can build my own world with everything I want or desire in it as best as I can with what time I have. In a way, I've now highlighted what I want as my end goals, so let's break it down to what needs to be done to get to that final position.</p>
+                    <p>Firstly, there is no point in dreaming about selling my work to anyone in the public if I don't have a shop going already. Thankfully I have a shop already but I've never had the guts to post my photos on there. It was never a matter of "I don't think I can do it" but more that I thought I'd do it too well and I wasn't sure what my next step was. Basically overthinking my steps and thinking that I always had to be several steps ahead when I try something. 2025 has proven to me that you can never anticipate what's going to happen and I'll go more into my reflection of 2025 in another post. So what's the first step? I've been asking myself this for the past month since first creating this website and it's quite simply to finally put up some photos in the shop for people to purchase. From there, I can receive feedback on my shop, my work and my prices. Only from failure will I learn how to do it the right way.</p>
+                    <p>The next stage in this journey would have to be networking. Talking to strangers became less of a problem for me since attending and completing university and I can be thankful to say that I did that on my own, there was no alcohol required to gain that confidence. Seems to be a trend in movies or films where a swig of alcohol, or liquid courage as it's sometimes portrayed, and BOOM, you can do anything. But it was never like that, I just had to think and understand that there may be others with anxiety like me and I can help them talk by opening up the conversation. All I simply had to do was put aside my fears and start a conversation, and most students at the time that I knew all played video games so it's not like it was really that hard to think of something. I honestly don't remember what games were coming out in Sept 2019 but there were still plenty to talk about for me to be able to start several conversations during many nights out. But back to the point at hand. Talking to strangers links to networking because I need to know how to start a conversation with people I've never met before in an industry that I have a profound passion and love for whilst avoiding the impression that I'm not just a kid who loves cars going vroom really loudly. I do have that really strong passion and love for the sport, and that's what I need to use to my advantage to talk to the teams and learn or get to know them.</p>
+                    <p>Over the two days spent with friends at Silverstone in 2024 for the British GT series, I actually managed to learn more about myself than I did about them because I suddenly realised that I had the confidence. So I quietly dared myself to push a little further and that gave me the opportunity of a lifetime... which I proceeded to fumble immediately, but I still learnt some great things. The story goes that in a conversation with an engineer, someone else approached me to ask who I was just as the conversation started. Shifting my attention to the gentleman, I realised he'd just told me that his son owns the team and he asked me if I wanted to try to sneak into the garage where the drivers were. Of course I was going to leap at the chance to do that and after being dragged quickly into the main part of the garage, I found myself within a few feet of the team's driver checking the timings board. That wasn't just any driver, THE Jessica Hawkins was standing right in front of me. She is a British professional racing driver and an ambassador for the Aston Martin Formula One Team. Sadly, whilst this was awesome and all, this is also where I fumbled so badly. Looking through my lens, I was able to see the timing screen through the reflection of her eyes and in the rush to capture the photo, I forgot to change my settings and increase the exposure. So whilst I may have an absolutely incredible story to tell, I have no photos to show for it because of that one simple mistake. But that's where the learning begins and understanding what to do at the next opportunity.</p>
+                `
+            },
         ];
 
         function openBlogModal(index) {
             const modal = document.getElementById('blogModal');
             const post = blogPosts[index];
-            
+
             document.getElementById('modalTitle').textContent = post.title;
             document.getElementById('modalDate').textContent = post.date;
             document.getElementById('modalCategory').textContent = post.category;
             document.getElementById('modalReadTime').textContent = post.readTime;
             document.getElementById('modalBody').innerHTML = post.content;
-            document.getElementById('modalBlogImage').textContent = post.title.toUpperCase();
-            
+
+            // Display banner image if available
+            const bannerContainer = document.querySelector('.modal-banner');
+            if (post.image) {
+                bannerContainer.innerHTML = `<img src="${post.image}" alt="${post.title}" style="width:100%;height:100%;object-fit:cover;">`;
+            } else {
+                bannerContainer.innerHTML = `<div class="modal-banner-placeholder">${post.title.toUpperCase()}</div>`;
+            }
+
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -308,14 +914,15 @@
             document.body.style.overflow = '';
         }
 
-        document.getElementById('blogModal').addEventListener('click', function(e) {
+        document.getElementById('blogModal').addEventListener('click', function (e) {
             if (e.target === this) closeBlogModal();
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeBlogModal();
         });
     </script>
 
 </body>
+
 </html>
