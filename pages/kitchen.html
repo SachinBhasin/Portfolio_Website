@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sachin Bhasin | Kitchen</title>
-    <link rel="icon" type="image/png" href="pages/assets/Favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>My Kitchen | Sachin Bhasin</title>
+    <link rel="icon" type="image/png" href="../camera.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -19,119 +22,835 @@
             --border: #2a2a2a;
             --overlay: rgba(10, 10, 10, 0.95);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Cormorant Garamond', Georgia, serif; background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1000; }
 
-        header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%); }
-        .nav-title { display: flex; align-items: baseline; gap: 0.5rem; }
-        .nav-title .my { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); }
-        .nav-dropdown { position: relative; }
-        .nav-current { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); cursor: pointer; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; }
-        .nav-dropdown:hover .nav-current { border-bottom-color: var(--accent); }
-        .nav-dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--bg-secondary); border: 1px solid var(--border); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
-        .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-dropdown-menu a { display: block; padding: 1rem 1.5rem; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: all 0.2s ease; border-left: 3px solid transparent; }
-        .nav-dropdown-menu a:hover { background: var(--bg-tertiary); color: var(--accent); border-left-color: var(--accent); padding-left: 2rem; }
-        .nav-dropdown-menu a.active { color: var(--accent); border-left-color: var(--accent); }
-        .blog-btn { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg-primary); background: var(--accent); padding: 1rem 2rem; border: none; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
-        .blog-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent-hover); transition: left 0.3s ease; }
-        .blog-btn:hover::before { left: 0; }
-        .blog-btn span { position: relative; z-index: 1; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .page-hero { min-height: 60vh; display: flex; align-items: flex-end; padding: 8rem 4rem 4rem; }
-        .page-hero-content { max-width: 800px; }
-        .page-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.2s; }
-        .page-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; line-height: 1.1; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.4s; }
-        .page-title span { font-style: italic; color: var(--accent); }
-        .page-intro { font-size: 1.3rem; color: var(--text-secondary); max-width: 600px; margin-top: 2rem; opacity: 0; animation: fadeSlideUp 0.8s ease forwards; animation-delay: 0.6s; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .recipes-section { padding: 6rem 4rem; }
-        .section-header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-        .section-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; }
-        .section-title span { font-style: italic; color: var(--accent); }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--bg-primary);
+        }
 
-        .filters-container { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-        .filter-btn { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.25rem; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
-        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
-        .clear-filters { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.25rem; border: none; background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; margin-left: auto; display: none; }
-        .clear-filters:hover { color: var(--accent); }
-        .clear-filters.visible { display: block; }
+        /* Custom Scrollbar for Page */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
 
-        .recipes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        .recipe-card { border: 1px solid var(--border); transition: all 0.4s ease; display: none; cursor: pointer; }
-        .recipe-card.visible { display: block; }
-        .recipe-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .recipe-image { aspect-ratio: 16/10; background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--text-muted); overflow: hidden; }
-        .recipe-image img { width: 100%; height: 100%; object-fit: cover; }
-        .recipe-content { padding: 2rem; }
-        .recipe-tags { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .recipe-tag { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
-        .recipe-title { font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; }
-        .recipe-desc { font-size: 1rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
-        .recipe-meta { display: flex; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-        .recipe-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
-        .recipe-meta-label { font-family: 'Syne', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-        .recipe-meta-value { font-size: 0.95rem; color: var(--text-secondary); }
+        body::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
 
-        .show-more-container { text-align: center; margin-top: 3rem; }
-        .show-more-btn { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); background: transparent; padding: 1.25rem 3rem; border: 1px solid var(--accent); cursor: pointer; transition: all 0.3s ease; }
-        .show-more-btn:hover { background: var(--accent); color: var(--bg-primary); }
-        .show-more-btn.hidden { display: none; }
+        body::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+        }
+
+        .nav-title {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .nav-title .my {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-current {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .nav-dropdown:hover .nav-current {
+            border-bottom-color: var(--accent);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: var(--bg-tertiary);
+            color: var(--accent);
+            border-left-color: var(--accent);
+            padding-left: 2rem;
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        .blog-btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--accent);
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .blog-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.3s ease;
+        }
+
+        .blog-btn:hover::before {
+            left: 0;
+        }
+
+        .blog-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 8rem 4rem 4rem;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+        }
+
+        .page-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .page-title span {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .page-intro {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        /* Recipes Section */
+        .recipes-section {
+            padding: 6rem 4rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+        }
+
+        .section-title span {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        /* Filters */
+        .filters-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .clear-filters {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: auto;
+            display: none;
+        }
+
+        .clear-filters:hover {
+            color: var(--accent);
+        }
+
+        .clear-filters.visible {
+            display: block;
+        }
+
+        /* Recipe Grid */
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 350px);
+            gap: 2rem;
+            justify-content: start;
+        }
+
+        .recipe-card {
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            display: none;
+            cursor: pointer;
+        }
+
+        .recipe-card.visible {
+            display: block;
+        }
+
+        .recipe-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .recipe-image {
+            position: relative;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            overflow: hidden;
+        }
+
+        .recipe-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 2rem;
+        }
+
+        .recipe-tags {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .recipe-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .recipe-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .recipe-meta-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .recipe-meta-value {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Show More Button */
+        .show-more-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .show-more-btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: transparent;
+            padding: 1.25rem 3rem;
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .show-more-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .show-more-btn.hidden {
+            display: none;
+        }
 
         /* Recipe Modal */
-        .modal { position: fixed; inset: 0; background: var(--overlay); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding: 2rem; }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content { display: grid; grid-template-columns: 1fr 450px; max-width: 1400px; max-height: 90vh; width: 100%; background: var(--bg-secondary); transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .modal.active .modal-content { transform: scale(1); }
-        .modal-image { position: relative; overflow: hidden; background: var(--bg-primary); }
-        .modal-image-placeholder { width: 100%; height: 100%; min-height: 500px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--text-muted); background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%); }
-        .modal-details { padding: 3rem; display: flex; flex-direction: column; border-left: 1px solid var(--border); overflow-y: auto; max-height: 90vh; }
-        .modal-close { position: absolute; top: 2rem; right: 2rem; width: 50px; height: 50px; background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-primary); cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
-        .modal-close:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
-        .modal-header { margin-bottom: 2rem; }
-        .modal-tags { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .modal-title { font-size: 2rem; font-weight: 300; margin-bottom: 1rem; }
-        .modal-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
-        .modal-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
-        .modal-meta-label { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-        .modal-meta-value { font-size: 0.95rem; color: var(--text-secondary); }
-        .modal-divider { height: 1px; background: var(--border); margin: 2rem 0; }
-        .modal-body { flex: 1; }
-        .modal-body h4 { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; margin-top: 1.5rem; }
-        .modal-body h4:first-child { margin-top: 0; }
-        .modal-body p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; }
-        .modal-body ul { font-size: 1.05rem; color: var(--text-secondary); line-height: 2; padding-left: 1.5rem; }
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: var(--overlay);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+        }
 
-        footer { padding: 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .footer-brand { font-size: 1.5rem; font-weight: 300; }
-        .footer-brand span { font-style: italic; color: var(--accent); }
-        .footer-links { display: flex; gap: 2rem; }
-        .footer-links a { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-copyright { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            max-height: 90vh;
+            width: 100%;
+            background: var(--bg-secondary);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-banner {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .modal-banner img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-banner-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+        }
+
+        .modal-details {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--bg-primary);
+        }
+
+        /* Custom Scrollbar for Modal */
+        .modal-details::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-details::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        .modal-details::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        .modal-details::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 4x1 Meta Grid */
+        .modal-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .modal-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .modal-meta-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .modal-meta-value {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        /* Modal Layout with Sidebar */
+        .modal-layout {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .modal-sidebar-box {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .modal-sidebar-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-sidebar-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .modal-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 1.5rem 0;
+        }
+
+        .modal-body h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .modal-body p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .modal-body ul {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            padding-left: 1.5rem;
+        }
+
+        .modal-notes {
+            margin-top: 1.5rem;
+        }
+
+        .modal-notes-box {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            background: var(--bg-tertiary);
+        }
+
+        .modal-notes-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-notes-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .footer-brand span {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copyright {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         @media (max-width: 1024px) {
-            .modal-content { grid-template-columns: 1fr; }
-            .modal-image { display: none; }
+            .modal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-sidebar {
+                order: -1;
+            }
+
+            .modal-banner {
+                height: 200px;
+            }
+
+            .modal-meta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
         @media (max-width: 768px) {
-            header { padding: 1.5rem 2rem; }
-            .page-hero { padding: 6rem 2rem 4rem; }
-            .recipes-section { padding: 4rem 2rem; }
-            .recipes-grid { grid-template-columns: 1fr; }
-            .filters-container { gap: 0.75rem; }
-            .filter-btn { padding: 0.6rem 1rem; font-size: 0.65rem; }
-            footer { flex-direction: column; gap: 2rem; text-align: center; }
-            .footer-links { flex-wrap: wrap; justify-content: center; }
-            .modal-details { padding: 2rem; }
+            header {
+                padding: 1.5rem 2rem;
+            }
+
+            .page-hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            .recipes-section {
+                padding: 4rem 2rem;
+            }
+
+            .recipes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-container {
+                gap: 0.75rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.65rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .modal-details {
+                padding: 2rem;
+            }
+
+            .modal-meta-grid {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -157,7 +876,8 @@
         <div class="page-hero-content">
             <p class="page-label">Where Creativity Meets Flavour</p>
             <h1 class="page-title">My <span>Kitchen</span></h1>
-            <p class="page-intro">Cooking is just photography for the taste buds—capturing the perfect balance of ingredients, timing, and presentation to tell a story on a plate.</p>
+            <p class="page-intro">Cooking is just photography for the taste buds—capturing the perfect balance of
+                ingredients, timing, and presentation to tell a story on a plate.</p>
         </div>
     </section>
 
@@ -167,29 +887,30 @@
         </div>
 
         <div class="filters-container">
-            <button class="filter-btn" data-filter="sauce">Sauce</button>
-            <button class="filter-btn" data-filter="side">Side</button>
             <button class="filter-btn" data-filter="breakfast">Breakfast</button>
             <button class="filter-btn" data-filter="lunch">Lunch</button>
             <button class="filter-btn" data-filter="dinner">Dinner</button>
+            <button class="filter-btn" data-filter="dessert">Dessert</button>
             <button class="filter-btn" data-filter="snack">Snack</button>
+            <button class="filter-btn" data-filter="side">Side</button>
+            <button class="filter-btn" data-filter="sauce">Sauce</button>
             <button class="filter-btn" data-filter="drink">Drink</button>
-            <button class="clear-filters" onclick="clearFilters()">Clear All ✕</button>
+            <button class="clear-filters" onclick="clearFilters()">Clear ✕</button>
         </div>
 
         <div class="recipes-grid">
 
             <!-- ========== RECIPE 1 ========== -->
-            <article class="recipe-card visible" data-tags="snack" onclick="openRecipeModal(0)">
+            <article class="recipe-card visible" data-tags="dinner" onclick="openRecipeModal(0)">
                 <div class="recipe-image">
-                    <img src="assets\Shortbread.jpg" alt="Scottish Shortbread" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="assets/Shortbread.jpg" alt="Mum's Butter Chicken">
                 </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Snack</span>
                     </div>
                     <h3 class="recipe-title">Scottish Shortbread</h3>
-                    <p class="recipe-desc">A simple ratio of butter, sugar, and flour creating a rich, crumbly treat.</p>
+                    <p class="recipe-desc">A simple ratio of butter, sugar, and flour creates a rich, crumbly treat.</p>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Prep Time</span>
@@ -197,35 +918,7 @@
                         </div>
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Cook Time</span>
-                            <span class="recipe-meta-value">20 mins</span>
-                        </div>
-                        <div class="recipe-meta-item">
-                            <span class="recipe-meta-label">Difficulty</span>
-                            <span class="recipe-meta-value">Easy</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- ========== RECIPE 2 ========== -->
-            <article class="recipe-card visible" data-tags="sauce" onclick="openRecipeModal(1)">
-                <div class="recipe-image">
-                    <img src="https://images.unsplash.com/photo-1625989803651-f57135dc1d64?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cranberry Sauce" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                <div class="recipe-content">
-                    <div class="recipe-tags">
-                        <span class="recipe-tag">Sauce</span>
-                    </div>
-                    <h3 class="recipe-title">Cranberry Sauce</h3>
-                    <p class="recipe-desc">Simple, sweet and slightly tart cranberry sauce.</p>
-                    <div class="recipe-meta">
-                        <div class="recipe-meta-item">
-                            <span class="recipe-meta-label">Prep Time</span>
-                            <span class="recipe-meta-value">15 mins</span>
-                        </div>
-                        <div class="recipe-meta-item">
-                            <span class="recipe-meta-label">Bake Time</span>
-                            <span class="recipe-meta-value">25 mins</span>
+                            <span class="recipe-meta-value">30 mins</span>
                         </div>
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Difficulty</span>
@@ -235,18 +928,47 @@
                 </div>
             </article>
 
-            <!-- ========== RECIPE 3 ========== -->
-            <article class="recipe-card visible" data-tags="savoury,lunch,snack" onclick="openRecipeModal(2)">
+            <!-- ========== RECIPE 2 ========== -->
+            <article class="recipe-card visible" data-tags="dessert" onclick="openRecipeModal(1)">
                 <div class="recipe-image">
-                    <img src="" alt="Spiced Lamb Flatbreads" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="" alt="Cardamom Rose Cake">
                 </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
-                        <span class="recipe-tag">Savoury</span>
+                        <span class="recipe-tag">Dessert</span>
+                    </div>
+                    <h3 class="recipe-title">Cardamom Rose Cake</h3>
+                    <p class="recipe-desc">Three layers of sponge infused with cardamom, topped with rose buttercream
+                        and pistachios.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Prep Time</span>
+                            <span class="recipe-meta-value">1 hour</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Bake Time</span>
+                            <span class="recipe-meta-value">35 mins</span>
+                        </div>
+                        <div class="recipe-meta-item">
+                            <span class="recipe-meta-label">Difficulty</span>
+                            <span class="recipe-meta-value">Advanced</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ========== RECIPE 3 ========== -->
+            <article class="recipe-card visible" data-tags="lunch" onclick="openRecipeModal(2)">
+                <div class="recipe-image">
+                    <img src="" alt="Spiced Lamb Flatbreads">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags">
                         <span class="recipe-tag">Lunch</span>
                     </div>
                     <h3 class="recipe-title">Spiced Lamb Flatbreads</h3>
-                    <p class="recipe-desc">Homemade flatbreads loaded with spiced lamb mince, fresh herbs, and a drizzle of mint yogurt.</p>
+                    <p class="recipe-desc">Homemade flatbreads loaded with spiced lamb mince, fresh herbs, and a drizzle
+                        of mint yogurt.</p>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Prep Time</span>
@@ -265,17 +987,17 @@
             </article>
 
             <!-- ========== RECIPE 4 ========== -->
-            <article class="recipe-card" data-tags="breakfast,sweet" onclick="openRecipeModal(3)">
+            <article class="recipe-card" data-tags="breakfast" onclick="openRecipeModal(3)">
                 <div class="recipe-image">
-                    <img src="" alt="Fluffy Pancake Stack" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="" alt="Fluffy Pancake Stack">
                 </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Breakfast</span>
-                        <span class="recipe-tag">Sweet</span>
                     </div>
                     <h3 class="recipe-title">Fluffy Pancake Stack</h3>
-                    <p class="recipe-desc">Light, fluffy American-style pancakes served with maple syrup, fresh berries, and a dusting of icing sugar.</p>
+                    <p class="recipe-desc">Light, fluffy American-style pancakes served with maple syrup, fresh berries,
+                        and a dusting of icing sugar.</p>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Prep Time</span>
@@ -296,14 +1018,15 @@
             <!-- ========== RECIPE 5 ========== -->
             <article class="recipe-card" data-tags="drink" onclick="openRecipeModal(4)">
                 <div class="recipe-image">
-                    <img src="" alt="Spiced Hot Chocolate" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="" alt="Spiced Hot Chocolate">
                 </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
                         <span class="recipe-tag">Drink</span>
                     </div>
                     <h3 class="recipe-title">Spiced Hot Chocolate</h3>
-                    <p class="recipe-desc">Rich, velvety hot chocolate with a hint of cinnamon, chilli, and topped with homemade marshmallows.</p>
+                    <p class="recipe-desc">Rich, velvety hot chocolate with a hint of cinnamon, chilli, and topped with
+                        homemade marshmallows.</p>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Prep Time</span>
@@ -322,17 +1045,17 @@
             </article>
 
             <!-- ========== RECIPE 6 ========== -->
-            <article class="recipe-card" data-tags="savoury,dinner" onclick="openRecipeModal(5)">
+            <article class="recipe-card" data-tags="dinner" onclick="openRecipeModal(5)">
                 <div class="recipe-image">
-                    <img src="" alt="Homemade Ramen" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="" alt="Homemade Ramen">
                 </div>
                 <div class="recipe-content">
                     <div class="recipe-tags">
-                        <span class="recipe-tag">Savoury</span>
                         <span class="recipe-tag">Dinner</span>
                     </div>
                     <h3 class="recipe-title">Homemade Ramen</h3>
-                    <p class="recipe-desc">A slow-cooked tonkotsu broth with hand-pulled noodles, soft-boiled eggs, and tender chashu pork.</p>
+                    <p class="recipe-desc">A slow-cooked tonkotsu broth with hand-pulled noodles, soft-boiled eggs, and
+                        tender chashu pork.</p>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">
                             <span class="recipe-meta-label">Prep Time</span>
@@ -358,7 +1081,7 @@
     </section>
 
     <footer>
-        <div class="footer-brand">Sachin <span>B</span></div>
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
         <div class="footer-links">
             <a href="../index.html">Home</a>
             <a href="story.html">Story</a>
@@ -368,21 +1091,20 @@
             <a href="projects.html">Projects</a>
             <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
         </div>
-        <p class="footer-copyright">© 2025 Sachin B. All rights reserved.</p>
+        <p class="footer-copyright">© 2025 Sachin Bhasin. All rights reserved.</p>
     </footer>
 
     <!-- Recipe Modal -->
     <div class="modal" id="recipeModal">
         <button class="modal-close" onclick="closeRecipeModal()">×</button>
         <div class="modal-content">
-            <div class="modal-image">
-                <div class="modal-image-placeholder" id="modalRecipeImage">RECIPE IMAGE</div>
+            <div class="modal-banner" id="modalBanner">
+                <div class="modal-banner-placeholder">RECIPE PHOTO</div>
             </div>
             <div class="modal-details">
                 <div class="modal-header">
-                    <div class="modal-tags" id="modalTags"></div>
                     <h2 class="modal-title" id="modalTitle">Recipe Title</h2>
-                    <div class="modal-meta">
+                    <div class="modal-meta-grid">
                         <div class="modal-meta-item">
                             <span class="modal-meta-label">Prep Time</span>
                             <span class="modal-meta-value" id="modalPrep">--</span>
@@ -401,8 +1123,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-divider"></div>
-                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-layout">
+                    <div class="modal-main">
+                        <div class="modal-body" id="modalBody"></div>
+                    </div>
+                    <div class="modal-sidebar">
+                        <div class="modal-sidebar-box">
+                            <h4 class="modal-sidebar-title">About This Recipe</h4>
+                            <p class="modal-sidebar-text" id="modalDescription"></p>
+                        </div>
+                        <div class="modal-sidebar-box">
+                            <h4 class="modal-sidebar-title">Notes</h4>
+                            <p class="modal-sidebar-text" id="modalNotes"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -410,76 +1145,56 @@
     <script>
         /* ================================================================
            RECIPE DATA - UPDATE THIS ARRAY WITH YOUR RECIPES
-           
-           Each object contains:
-           - title: Recipe name
-           - tags: Array of category tags
-           - prep: Prep time
-           - cook: Cook time
-           - difficulty: Easy/Medium/Advanced
-           - servings: Number of servings
-           - description: Brief intro
-           - ingredients: HTML string of ingredients
-           - instructions: HTML string of method steps
         ================================================================ */
         const recipes = [
             {
-                title: "Scottish Shortbread",
-                tags: ["Savoury", "Dinner"],
-                prep: "30 mins",
-                cook: "45 mins",
+                title: "Scotish Shortbread",
+                tags: ["Snack"],
+                prep: "20 mins",
+                cook: "30 mins",
                 difficulty: "Medium",
-                servings: "4",
-                image: "assets/Shortbread.jpg",  // Add image path here, e.g., "../assets/butter-chicken.jpg"
-                description: "A family recipe passed down through generations. This butter chicken has the perfect balance of spices, tomato, and cream.",
+                servings: "10 to 20",
+                image: "assets/shortbread.jpg",
+                description: "A simple ratio of butter, sugar, and flour creates a rich, crumbly treat.",
                 ingredients: `<ul>
-                    <li>500g chicken breast, cubed</li>
-                    <li>200ml double cream</li>
-                    <li>400g tinned tomatoes</li>
-                    <li>2 tbsp butter</li>
-                    <li>1 onion, finely diced</li>
-                    <li>4 cloves garlic, minced</li>
-                    <li>2 tsp garam masala</li>
-                    <li>1 tsp turmeric</li>
-                    <li>1 tsp cumin</li>
-                    <li>Fresh coriander to garnish</li>
+                    <li>200g butter</li>
+                    <li>100g sugar</li>
+                    <li>300g self-raising flour</li>
                 </ul>`,
-                instructions: `<p>Marinate the chicken in yogurt and spices for at least 2 hours. Fry the onions until golden, add garlic and spices. Add tomatoes and simmer for 20 minutes. Stir in cream and butter, add chicken and cook until done. Garnish with fresh coriander and serve with basmati rice.</p>`
+                instructions: `<p>Cream butter and sugar until fluffy. Add flour gradually and mix until dough forms. Roll out and cut into shapes. Bake at 180°C for 15-20 minutes until golden.</p>`,
+                notes: "Use high-quality butter for the best flavour. You can also add a pinch of salt to balance the sweetness."
             },
             {
-                title: "Cranberry Sauce",
-                tags: ["Sauce"],
-                prep: "15 mins",
-                cook: "25 mins",
-                difficulty: "Medium",
-                servings: "20",
-                image: "https://plus.unsplash.com/premium_photo-1674347953907-5518c9ff379d?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",  // Add image path here
-                description: "Simple, sweet and slightly tart cranberry sauce.",
+                title: "Cardamom Rose Cake",
+                tags: ["Dessert"],
+                prep: "1 hour",
+                cook: "35 mins",
+                difficulty: "Advanced",
+                servings: "12",
+                image: "",
+                description: "Three layers of fragrant cardamom sponge, filled and topped with rose buttercream and crushed pistachios.",
                 ingredients: `<ul>
-                    <li>500g fresh cranberries</li>
-                    <li>300g caster sugar</li>
-                    <li>1.5 teaspoon finely grated lemon zest</li>
-                    <li>3 tablespoons of water</li>
-                    <li>100g brown sugar</li>
-                    <li>80g light brown sugar</li>
-                    <li>45g dijon mustard</li>
-                    <li>45g red win vinegar</li>
-                    <li>42g extra virgin olive oil</li>
-                    <li>30g finely chopped shallots</li>
-                    <li>1.5 teaspoon chopped fresh thyme</li>
-                    <li>1.5 teaspoon finely grated fresh ginger</li>
-                    <li>1 teaspoon fine sea salt</li>
+                    <li>300g self-raising flour</li>
+                    <li>250g caster sugar</li>
+                    <li>250g butter, softened</li>
+                    <li>4 large eggs</li>
+                    <li>2 tsp ground cardamom</li>
+                    <li>1 tsp rose water</li>
+                    <li>200ml buttermilk</li>
+                    <li>400g icing sugar (for buttercream)</li>
+                    <li>Pistachios for decoration</li>
                 </ul>`,
-                instructions: `<p>Place the first four ingredients in a small saucepan and bring to a boil. Simmer for about 10 minutes or until soft and thickened. Add all remaining ingredients and simmer for another 5 minutes. Add a few more whole cranberries and simmer for another minute. Let the sauce cool to room temperature and then store in the fridge.</p>`
+                instructions: `<p>Cream butter and sugar until fluffy. Add eggs one at a time. Fold in flour and cardamom. Add buttermilk and rose water. Divide between three tins and bake at 180°C for 25-30 minutes. Make buttercream with butter, icing sugar, and rose water. Layer and decorate with crushed pistachios.</p>`,
+                notes: "Be careful with the rose water—a little goes a long way. Start with less and add more to taste."
             },
             {
                 title: "Spiced Lamb Flatbreads",
-                tags: ["Savoury", "Lunch"],
+                tags: ["Lunch"],
                 prep: "20 mins",
                 cook: "15 mins",
                 difficulty: "Easy",
                 servings: "4",
-                image: "",  // Add image path here
+                image: "",
                 description: "Quick and delicious flatbreads topped with spiced lamb mince, fresh herbs, and cooling mint yogurt.",
                 ingredients: `<ul>
                     <li>4 flatbreads</li>
@@ -491,16 +1206,17 @@
                     <li>150g Greek yogurt</li>
                     <li>1 lemon</li>
                 </ul>`,
-                instructions: `<p>Brown the lamb mince with spices until cooked through. Warm flatbreads in a dry pan. Mix yogurt with chopped mint and lemon juice. Top flatbreads with lamb, drizzle with mint yogurt, and finish with fresh herbs.</p>`
+                instructions: `<p>Brown the lamb mince with spices until cooked through. Warm flatbreads in a dry pan. Mix yogurt with chopped mint and lemon juice. Top flatbreads with lamb, drizzle with mint yogurt, and finish with fresh herbs.</p>`,
+                notes: "You can substitute lamb with beef mince if preferred. Add pomegranate seeds for extra colour and crunch."
             },
             {
                 title: "Fluffy Pancake Stack",
-                tags: ["Breakfast", "Sweet"],
+                tags: ["Breakfast"],
                 prep: "10 mins",
                 cook: "15 mins",
                 difficulty: "Easy",
                 servings: "2",
-                image: "",  // Add image path here
+                image: "",
                 description: "Light, fluffy American-style pancakes that are perfect for a lazy weekend breakfast.",
                 ingredients: `<ul>
                     <li>200g plain flour</li>
@@ -512,7 +1228,8 @@
                     <li>Maple syrup to serve</li>
                     <li>Fresh berries</li>
                 </ul>`,
-                instructions: `<p>Mix dry ingredients. Whisk egg, milk, and melted butter. Combine wet and dry until just mixed (lumps are fine). Cook spoonfuls in a buttered pan until bubbles form, then flip. Stack and serve with maple syrup and fresh berries.</p>`
+                instructions: `<p>Mix dry ingredients. Whisk egg, milk, and melted butter. Combine wet and dry until just mixed (lumps are fine). Cook spoonfuls in a buttered pan until bubbles form, then flip. Stack and serve with maple syrup and fresh berries.</p>`,
+                notes: "Don't overmix the batter—lumps are your friend here! They help keep the pancakes fluffy."
             },
             {
                 title: "Spiced Hot Chocolate",
@@ -521,7 +1238,7 @@
                 cook: "10 mins",
                 difficulty: "Easy",
                 servings: "2",
-                image: "",  // Add image path here
+                image: "",
                 description: "Rich, velvety hot chocolate with warming spices—perfect for cold evenings.",
                 ingredients: `<ul>
                     <li>500ml whole milk</li>
@@ -532,16 +1249,17 @@
                     <li>Whipped cream</li>
                     <li>Marshmallows</li>
                 </ul>`,
-                instructions: `<p>Heat milk with cinnamon and chilli until simmering. Remove from heat and add chopped chocolate, stirring until melted. Add sugar to taste. Pour into mugs and top with whipped cream and marshmallows.</p>`
+                instructions: `<p>Heat milk with cinnamon and chilli until simmering. Remove from heat and add chopped chocolate, stirring until melted. Add sugar to taste. Pour into mugs and top with whipped cream and marshmallows.</p>`,
+                notes: "Use 70% dark chocolate for a more intense flavour. Adjust the chilli to your heat preference."
             },
             {
                 title: "Homemade Ramen",
-                tags: ["Savoury", "Dinner"],
+                tags: ["Dinner"],
                 prep: "1 hour",
                 cook: "8 hours",
                 difficulty: "Advanced",
                 servings: "4",
-                image: "",  // Add image path here
+                image: "",
                 description: "A labour of love—rich tonkotsu broth with all the traditional toppings.",
                 ingredients: `<ul>
                     <li>1kg pork bones</li>
@@ -554,123 +1272,150 @@
                     <li>Mirin</li>
                     <li>Garlic and ginger</li>
                 </ul>`,
-                instructions: `<p>Blanch pork bones, then simmer in fresh water for 8+ hours until milky white. Braise pork belly in soy, mirin, and sugar. Marinate soft-boiled eggs in soy mixture. Cook noodles, assemble bowls with broth, sliced chashu, egg, nori, and spring onions.</p>`
+                instructions: `<p>Blanch pork bones, then simmer in fresh water for 8+ hours until milky white. Braise pork belly in soy, mirin, and sugar. Marinate soft-boiled eggs in soy mixture. Cook noodles, assemble bowls with broth, sliced chashu, egg, nori, and spring onions.</p>`,
+                notes: "The broth can be made a day ahead and refrigerated. The flavour actually improves overnight."
             }
         ];
 
-        let activeFilters = [];
-        let allShown = false;
-
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const filter = this.dataset.filter;
-                if (activeFilters.includes(filter)) {
-                    activeFilters = activeFilters.filter(f => f !== filter);
-                    this.classList.remove('active');
-                } else {
-                    activeFilters.push(filter);
-                    this.classList.add('active');
-                }
-                updateClearButton();
-                filterRecipes();
-            });
-        });
-
-        function filterRecipes() {
-            const cards = document.querySelectorAll('.recipe-card');
-            cards.forEach((card, index) => {
-                const tags = card.dataset.tags.split(',');
-                if (activeFilters.length === 0) {
-                    if (allShown || index < 3) {
-                        card.classList.add('visible');
-                    } else {
-                        card.classList.remove('visible');
-                    }
-                } else {
-                    const matches = activeFilters.some(filter => tags.includes(filter));
-                    if (matches) {
-                        card.classList.add('visible');
-                    } else {
-                        card.classList.remove('visible');
-                    }
-                }
-            });
-            updateShowMoreButton();
-        }
-
-        function updateClearButton() {
-            const clearBtn = document.querySelector('.clear-filters');
-            clearBtn.classList.toggle('visible', activeFilters.length > 0);
-        }
-
-        function clearFilters() {
-            activeFilters = [];
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            updateClearButton();
-            filterRecipes();
-        }
-
-        function showMoreRecipes() {
-            allShown = true;
-            document.querySelectorAll('.recipe-card').forEach(card => {
-                if (activeFilters.length === 0) card.classList.add('visible');
-            });
-            document.querySelector('.show-more-btn').classList.add('hidden');
-        }
-
-        function updateShowMoreButton() {
-            const btn = document.querySelector('.show-more-btn');
-            const hiddenCards = document.querySelectorAll('.recipe-card:not(.visible)');
-            btn.classList.toggle('hidden', activeFilters.length > 0 || allShown || hiddenCards.length === 0);
-        }
-
+        // Open recipe modal
         function openRecipeModal(index) {
             const modal = document.getElementById('recipeModal');
             const recipe = recipes[index];
-            
+
             document.getElementById('modalTitle').textContent = recipe.title;
             document.getElementById('modalPrep').textContent = recipe.prep;
             document.getElementById('modalCook').textContent = recipe.cook;
             document.getElementById('modalDifficulty').textContent = recipe.difficulty;
             document.getElementById('modalServings').textContent = recipe.servings;
-            
-            // Display full image in modal with object-fit: contain to show entire image
-            const imageContainer = document.querySelector('.modal-image');
+            document.getElementById('modalDescription').textContent = recipe.description;
+            document.getElementById('modalNotes').textContent = recipe.notes || "No additional notes for this recipe.";
+
+            // Display banner image
+            const bannerContainer = document.getElementById('modalBanner');
             if (recipe.image) {
-                imageContainer.innerHTML = `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;height:100%;object-fit:contain;">`;
+                bannerContainer.innerHTML = `<img src="${recipe.image}" alt="${recipe.title}">`;
             } else {
-                imageContainer.innerHTML = `<div class="modal-image-placeholder">${recipe.title.toUpperCase()}</div>`;
+                bannerContainer.innerHTML = `<div class="modal-banner-placeholder">${recipe.title.toUpperCase()}</div>`;
             }
-            
-            document.getElementById('modalTags').innerHTML = recipe.tags.map(tag => 
-                `<span class="recipe-tag">${tag}</span>`
-            ).join('');
-            
+
             document.getElementById('modalBody').innerHTML = `
-                <p>${recipe.description}</p>
                 <h4>Ingredients</h4>
                 ${recipe.ingredients}
+                <div class="modal-divider"></div>
                 <h4>Method</h4>
                 ${recipe.instructions}
             `;
-            
+
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
+        // Close recipe modal
         function closeRecipeModal() {
             document.getElementById('recipeModal').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        document.getElementById('recipeModal').addEventListener('click', function(e) {
+        // Close modal on background click
+        document.getElementById('recipeModal').addEventListener('click', function (e) {
             if (e.target === this) closeRecipeModal();
         });
 
-        document.addEventListener('keydown', function(e) {
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeRecipeModal();
         });
+
+        // Filter functionality - single selection toggle
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const recipeCards = document.querySelectorAll('.recipe-card');
+        const clearBtn = document.querySelector('.clear-filters');
+        let activeFilter = null;
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+
+                // If clicking the same filter, deselect it
+                if (btn.classList.contains('active')) {
+                    btn.classList.remove('active');
+                    activeFilter = null;
+                } else {
+                    // Remove active from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active to clicked button
+                    btn.classList.add('active');
+                    activeFilter = filter;
+                }
+
+                applyFilters();
+                clearBtn.classList.toggle('visible', activeFilter !== null);
+            });
+        });
+
+        function applyFilters() {
+            recipeCards.forEach(card => {
+                const tags = card.dataset.tags.split(',');
+                if (activeFilter === null || tags.includes(activeFilter)) {
+                    card.classList.add('visible');
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+            updateShowMoreButton();
+        }
+
+        function clearFilters() {
+            activeFilter = null;
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            clearBtn.classList.remove('visible');
+            recipeCards.forEach(card => card.classList.add('visible'));
+            updateShowMoreButton();
+        }
+
+        // Show more functionality
+        const INITIAL_VISIBLE = 3;
+        let showingAll = false;
+
+        function initializeVisibility() {
+            recipeCards.forEach((card, index) => {
+                if (index < INITIAL_VISIBLE) {
+                    card.classList.add('visible');
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+            updateShowMoreButton();
+        }
+
+        function showMoreRecipes() {
+            showingAll = true;
+            recipeCards.forEach(card => {
+                const tags = card.dataset.tags.split(',');
+                if (activeFilter === null || tags.includes(activeFilter)) {
+                    card.classList.add('visible');
+                }
+            });
+            updateShowMoreButton();
+        }
+
+        function updateShowMoreButton() {
+            const btn = document.querySelector('.show-more-btn');
+            const visibleCards = document.querySelectorAll('.recipe-card.visible').length;
+            const totalMatchingCards = activeFilter === null
+                ? recipeCards.length
+                : [...recipeCards].filter(card => {
+                    const tags = card.dataset.tags.split(',');
+                    return tags.includes(activeFilter);
+                }).length;
+
+            btn.classList.toggle('hidden', showingAll || visibleCards >= totalMatchingCards);
+        }
+
+        // Initialize
+        initializeVisibility();
     </script>
 
 </body>
+
 </html>
