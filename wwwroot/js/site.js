@@ -1,20 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-/* ================================================================
-   PHOTO DATA - UPDATE THIS ARRAY WITH YOUR PHOTO INFORMATION
-   
-   Each object corresponds to a gallery image (index 0-7).
-   Fields:
-   - title: Name of the photograph
-   - location: Where it was taken
-   - date: When it was taken
-   - description: The story behind the shot
-   - love: What you love about this image
-================================================================ */
-const photos = [
+﻿const photos = [
     { title: "Eye to Eye", location: "Birds of Prey, North Yorkshire", date: "June 2023", description: "Juvenile Black-and-chestnut Eagles have white underparts with dark speckles and a dark back—a very different appearance from the adult plumage, which is mostly black with a chestnut breast. In this photo, I captured an incredibly striking moment: our eyes locked on each other, frozen in perfect clarity.", love: "Purely the perfect timing of the photo. One of my best shots by far.", image: "https://live.staticflickr.com/65535/55012048159_02c57d8ebf_b.jpg" },
     { title: "The Coos", location: "North Yorkshire", date: "June 2023", description: "Highland cattle are an ancient Scottish breed, known for their long horns and shaggy double coat. Their thick, flowing hair helps them withstand harsh climates and protects their eyes from wind, rain, and insects. They are one of the oldest registered cattle breeds, with written records tracing back to the 18th century.", love: "It's a lovely family photo—the parent staring at me while the calf simply relaxes.", image: "https://live.staticflickr.com/65535/55011792536_caeeb37852_b.jpg" },
     { title: "What Time?", location: "Calton Hill, Edinburgh", date: "July 2024", description: "The hotel, originally named the North British Station Hotel, opened in 1902 and is located on Princes Street, adjacent to Waverley Railway Station. Its clock tower is famously set three minutes fast to help those rushing to the nearby station catch their trains. The only time the clock shows the correct time is on Hogmanay (New Year's Eve) for the city's celebrations. Standing at 190 feet (58 metres) tall, the tower is a notable feature of Edinburgh's skyline.", love: "Standing from Calton Hill, I found the perfect composition of the leaves surrounding the tower.", image: "https://live.staticflickr.com/65535/55012100510_83e778ebe2_b.jpg" },

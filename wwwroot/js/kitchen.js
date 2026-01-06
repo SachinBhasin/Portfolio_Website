@@ -1,6 +1,5 @@
-﻿
-        /* ================================================================
-           RECIPE DATA - UPDATE THIS ARRAY WITH YOUR RECIPES
+﻿        /* ================================================================
+           RECIPE DATA
         ================================================================ */
         const recipes = [
             {
@@ -10,15 +9,24 @@
                 cook: "30 mins",
                 difficulty: "Medium",
                 servings: "10 to 20",
-                image: "assets/shortbread.jpg",
+                image: "https://plus.unsplash.com/premium_photo-1672916806802-389742ad078f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 description: "A simple ratio of butter, sugar, and flour creates a rich, crumbly treat.",
                 ingredients: `<ul>
                     <li>200g butter</li>
                     <li>100g sugar</li>
                     <li>300g self-raising flour</li>
                 </ul>`,
-                instructions: `<p>Cream butter and sugar until fluffy. Add flour gradually and mix until dough forms. Roll out and cut into shapes. Bake at 180°C for 15-20 minutes until golden.</p>`,
-                notes: "Use high-quality butter for the best flavour. You can also add a pinch of salt to balance the sweetness."
+                instructions: `<p>Heat oven to 190°C.</p>
+                    <br>
+                    <p>Start by mixing the butter and sugar together. It's vital that you don't cream them. The butter shouldn't be too soft, but also not straight from the fridge, especially if you use a mixer.</p>
+                    <br>
+                    <p>Add the flour and mix to a stiff consistency. Don't overwork the dough; stop when it just comes together.</p>
+                    <br>
+                    <p>Roll out till the thickness is about 0.5cm (no more than 1cm) and trim the edges to the approximate size of half your baking tray.</p>
+                    <br>
+                    <p>Make sure your fingers are wide enough that a fork can prick them. Use a bench scraper or knife to cut the dough into fingers. Next, prick the shortbread with a fork, about halfway through.</p>
+                    <br>
+                    <p>Place in preheated oven for 15 to 30 minutes (depending on thickness or shape) or until slightly brown on edges. Shortbread shouldn't be darkly coloured. Let your shortbread cool on the tray before moving to a rack to cool completely.</p>`,                notes: "Use high-quality butter for the best flavour. You can also add a pinch of salt to balance the sweetness."
             },
             {
                 title: "Cranberry Sauce",
@@ -282,7 +290,7 @@
         }
 
         // Show more functionality
-        const INITIAL_VISIBLE = 4;
+        const INITIAL_VISIBLE = 3;
         let showingAll = false;
 
         function initializeVisibility() {

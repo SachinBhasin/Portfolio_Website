@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "My Blog";
+    ViewData["Title"] = "Blog";
 }
 
 <head>
@@ -32,10 +32,7 @@
         <div class="page-hero-content">
             <p class="page-label">Thoughts & Reflections</p>
             <h1 class="page-title">My <span>Blog</span></h1>
-            <p class="page-intro">
-                This blog is my accountability partner. I'm documenting my journey from aspiring
-                photographer to working creative, one post at a time. Follow along as I chase my 2026 goals.
-            </p>
+            <p class="page-intro">This blog is my accountability partner. I'm documenting my journey to turn my photography passion into something more, one post at a time. Follow along as I work towards my 2026 goals and more.</p>
         </div>
     </section>
 
@@ -63,7 +60,7 @@
                         <li>
                             <div class="goal-item">
                                 <span class="goal-check done"></span>
-                                <span class="goal-text">Start Flickr portfolio</span>
+                                <span class="goal-text">Start <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank" style="color: var(--accent); text-decoration: none;">Flickr</a> portfolio</span>
                             </div>
                         </li>
                         <li>
@@ -122,13 +119,14 @@
     <footer>
         <div class="footer-brand">Sachin <span>Bhasin</span></div>
         <div class="footer-links">
-                    <a asp-controller="Home" asp-action="Index">Home</a>
-                    <a asp-controller="Home" asp-action="Story" class="active">Story</a>
-                    <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
-                    <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
-                    <a asp-controller="Home" asp-action="Blog">Blog</a>
-                    <a asp-controller="Home" asp-action="Projects">Projects</a>
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="Story" class="active">Story</a>
+            <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
+            <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+            <a asp-controller="Home" asp-action="Blog">Blog</a>
+            <a asp-controller="Home" asp-action="Projects">Projects</a>
             <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
+            <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
         </div>
         <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
     </footer>
