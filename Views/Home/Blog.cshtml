@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "My Blog";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/blog.css" />
+</head>
+
+<body>
+    <header>
+        <div class="nav-title">
+            <span class="my">My</span>
+            <div class="nav-dropdown">
+                <span class="nav-current">Blog</span>
+                <div class="nav-dropdown-menu">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-controller="Home" asp-action="Story">Story</a>
+                    <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
+                    <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+                    <a asp-controller="Home" asp-action="Blog" class="active">Blog</a>
+                    <a asp-controller="Home" asp-action="Projects">Projects</a>
+                    <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">My Shop ↗</a>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Home" asp-action="Blog" class="blog-btn"><span>Read My Blog</span></a>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <p class="page-label">Thoughts & Reflections</p>
+            <h1 class="page-title">My <span>Blog</span></h1>
+            <p class="page-intro">
+                This blog is my accountability partner. I'm documenting my journey from aspiring
+                photographer to working creative, one post at a time. Follow along as I chase my 2026 goals.
+            </p>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="blog-layout">
+            <div class="blog-main">
+                <div class="section-header-row">
+                    <h2 class="section-title">All <span>Posts</span></h2>
+                    <span class="click-hint">Click to Read</span>
+                </div>
+                <div class="blog-grid" id="blogGrid">
+                </div>
+            </div>
+
+            <aside class="blog-sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">2026 Goals</h3>
+                    <ul class="goals-list">
+                        <li>
+                            <div class="goal-item">
+                                <span class="goal-check done"></span>
+                                <span class="goal-text">Launch personal website</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="goal-item">
+                                <span class="goal-check done"></span>
+                                <span class="goal-text">Start Flickr portfolio</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="goal-item">
+                                <span class="goal-check"></span>
+                                <span class="goal-text">Sell my first print</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="goal-item has-subgoals" onclick="toggleSubgoals(this)">
+                                <span class="goal-check"></span>
+                                <span class="goal-text">Complete 5 Lake District Hikes</span>
+                                <span class="goal-expand">+</span>
+                            </div>
+                            <ul class="subgoals-list">
+                                <li class="subgoal-item">
+                                    <span class="subgoal-check"></span>
+                                    <span class="subgoal-text">Friars Crag</span>
+                                </li>
+                                <li class="subgoal-item">
+                                    <span class="subgoal-check"></span>
+                                    <span class="subgoal-text">Blea Tarn</span>
+                                </li>
+                                <li class="subgoal-item">
+                                    <span class="subgoal-check"></span>
+                                    <span class="subgoal-text">Tarn Hows</span>
+                                </li>
+                                <li class="subgoal-item">
+                                    <span class="subgoal-check"></span>
+                                    <span class="subgoal-text">Latrigg Fell</span>
+                                </li>
+                                <li class="subgoal-item">
+                                    <span class="subgoal-check"></span>
+                                    <span class="subgoal-text">Gummers How</span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="goal-item">
+                                <span class="goal-check"></span>
+                                <span class="goal-text">Visit Edinburgh Again</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="goal-item">
+                                <span class="goal-check"></span>
+                                <span class="goal-text">Get Back into Sim-Racing</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-controller="Home" asp-action="Story" class="active">Story</a>
+                    <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
+                    <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+                    <a asp-controller="Home" asp-action="Blog">Blog</a>
+                    <a asp-controller="Home" asp-action="Projects">Projects</a>
+            <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+
+    <!-- Blog Post Modal -->
+    <div class="modal" id="blogModal">
+        <button class="modal-close" onclick="closeBlogModal()">×</button>
+        <div class="modal-content">
+            <div class="modal-banner" id="modalBanner">
+                <div class="modal-banner-placeholder">BLOG IMAGE</div>
+            </div>
+            <div class="modal-details">
+                <div class="modal-header">
+                    <div class="modal-meta">
+                        <span class="modal-date" id="modalDate">Date</span>
+                        <span class="modal-readtime" id="modalReadTime">X min read</span>
+                    </div>
+                    <h2 class="modal-title" id="modalTitle">Blog Post Title</h2>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-body" id="modalBody">
+                    <p>Content goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="~/js/blog.js"></script>

@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Story";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/story.css" />
+</head>
+<body>
+
+    <header>
+        <div class="nav-title">
+            <span class="my">My</span>
+            <div class="nav-dropdown">
+                <span class="nav-current">Story</span>
+                <div class="nav-dropdown-menu">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-controller="Home" asp-action="Story" class="active">Story</a>
+                    <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
+                    <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+                    <a asp-controller="Home" asp-action="Blog">Blog</a>
+                    <a asp-controller="Home" asp-action="Projects">Projects</a>
+                    <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">My Shop ↗</a>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Home" asp-action="Blog" class="blog-btn"><span>Read My Blog</span></a>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <p class="page-label">The Journey So Far</p>
+            <h1 class="page-title">My <span>Story</span></h1>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-year">2000 — Day 0</span>
+                <h3 class="timeline-title">The Beginning</h3>
+                <p class="timeline-content">Born on 24th July 2000 in the Netherlands—the first of three countries I would call home.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2004 - c. Day 1400</span>
+                <h3 class="timeline-title">The First Move</h3>
+                <p class="timeline-content">Due to circumstances beyond my comprehension, we moved to a new country. After travelling around 6,000 miles, we settled in Doha, the capital of Qatar. It was a massive change from the Netherlands, not least because of the extreme heat (highs of 50°C in summer), but it was a life-changing experience nonetheless. The memories I made in that desert city will be cherished for life.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2015 — c. Day 5500</span>
+                <h3 class="timeline-title">The Second Move</h3>
+                <p class="timeline-content">Having just finished the first year of my GCSEs, I was told to prepare for another move—another 6,000 miles, but this time to the UK. So much had to change: selling my belongings and starting over in a place I'd never been. The transition was jarring, but it also felt like a fresh start—one that took me a while to fully accept.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2019 — c. Day 7000</span>
+                <h3 class="timeline-title">Off to University</h3>
+                <p class="timeline-content">Finally, I began my university degree—something many had praised as an experience like no other, where you learn so much valuable information. It was stressful, fun, and full of memories to both keep and forget!</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2024 — c. Day 8600</span>
+                <h3 class="timeline-title">Graduation Day</h3>
+                <p class="timeline-content">
+                    I finished my Computer Science degree in 2023, but the graduation ceremony wasn't until 2024. When that day finally
+                    came, I walked across the stage while family and friends cheered, collecting that piece of paper confirming I'd done it!
+                </p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2026 — c. Day 9300</span>
+                <h3 class="timeline-title">The Present Day</h3>
+                <p class="timeline-content">And here we are, in the present day. Having recently lost my job to AI, I've had to adapt my skills to the current market. After several conversations, it became clear that a portfolio was the best first step to getting back on my feet doing what I love. So here it is—my website! The start of the next chapter.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="values-section">
+        <div class="values-header">
+            <h2>What I <span>Believe</span></h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <span class="value-number">01</span>
+                <h3 class="value-title">Authenticity</h3>
+                <p class="value-desc">Every photograph should tell the truth, even when it's uncomfortable. The best stories are the real ones.</p>
+            </div>
+            <div class="value-card">
+                <span class="value-number">02</span>
+                <h3 class="value-title">Patience</h3>
+                <p class="value-desc">The perfect moment rarely announces itself. Learning to wait, to observe, to be present—that's half the craft.</p>
+            </div>
+            <div class="value-card">
+                <span class="value-number">03</span>
+                <h3 class="value-title">Growth</h3>
+                <p class="value-desc">Every day I'm learning. Every shoot teaches me something new. The moment I think I know enough is the moment I stop creating.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="Story" class="active">Story</a>
+            <a asp-action="Home" asp-action="Hobbies">Hobbies</a>
+            <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+            <a asp-controller="Home" asp-action="Blog">Blog</a>
+            <a asp-controller="Home" asp-action="Projects">Projects</a>
+            <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+</body>

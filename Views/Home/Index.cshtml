@@ -1,0 +1,256 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-title">
+            <span class="my">My</span>
+            <div class="nav-dropdown">
+                <span class="nav-current">Life</span>
+                <div class="nav-dropdown-menu">
+                    <a asp-controller="Home" asp-action="Index" class="active">Home</a>
+                    <a asp-controller="Home" asp-action="Story">Story</a>
+                    <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
+                    <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+                    <a asp-controller="Home" asp-action="Blog">Blog</a>
+                    <a asp-controller="Home" asp-action="Projects">Projects</a>
+                    <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">My Shop ↗</a>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Home" asp-action="Blog" class="blog-btn"><span>Read My Blog</span></a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-greeting">Welcome to my world</p>
+            <h1 class="hero-name">Sachin<span>Bhasin</span></h1>
+            <p class="hero-title">Photographer • Creative • Storyteller</p>
+            <p class="hero-description">
+                An aspiring photographer with an unwavering passion for capturing life's fleeting moments through the lens, dedicated to visual poetry and authentic storytelling.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Years Young</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">CS</div>
+                    <div class="stat-label">Graduate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Stories to Tell</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <!-- ============================================
+                 HERO PORTRAIT IMAGE
+                 Replace the div below with an img tag:
+                 <img src="YOUR_IMAGE_URL" alt="Sachin B Portrait" style="width:100%;height:100%;object-fit:cover;">
+            ============================================ -->
+                <img src="/res/SachinBhasinPortrait.jpeg" alt="Sachin Bhasin Portrait" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+    </section>
+
+    <!-- ================================================================
+         GALLERY SECTION - SELECTED WORKS
+         
+         HOW TO ADD/EDIT IMAGES:
+         1. Each gallery-item div represents one photo in the grid
+         2. Replace the gallery-placeholder div with an img tag
+         3. Update the corresponding entry in the 'photos' array in JavaScript
+         
+         Example:
+         Change: <div class="gallery-placeholder">IMAGE 01</div>
+         To:     <img src="your-image-url.jpg" alt="Photo title">
+    ================================================================ -->
+    <section class="gallery-section">
+        <div class="section-header">
+            <div>
+                <p class="section-subtitle">Portfolio</p>
+                <h2 class="section-title">Selected <span>Works</span></h2>
+            </div>
+            <p class="section-subtitle">Click to explore</p>
+        </div>
+        <div class="gallery-grid">
+
+            <!-- ========== IMAGE 1 ========== -->
+            <div class="gallery-item" onclick="openModal(0)">
+                <img src="https://live.staticflickr.com/65535/55012048159_02c57d8ebf_b.jpg"
+                    alt="Eye to Eye" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>Eye to Eye</h3>
+                        <p>North Yorkshire, 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 2 ========== -->
+            <div class="gallery-item" onclick="openModal(1)">
+                <img src="https://live.staticflickr.com/65535/55011792536_caeeb37852_b.jpg"
+                    alt="The Coos" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>The Coos</h3>
+                        <p>North Yorkshire, 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 3 ========== -->
+            <div class="gallery-item" onclick="openModal(2)">
+                <img src="https://live.staticflickr.com/65535/55012100510_83e778ebe2_b.jpg"
+                    alt="What Time?" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>What Time?</h3>
+                        <p>Edinburgh, 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 4 ========== -->
+            <div class="gallery-item" onclick="openModal(3)">
+                <img src="https://live.staticflickr.com/65535/55010905167_865a1c43b5_b.jpg"
+                    alt="Hidden in Plain Sight" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>Hidden in Plain Sight</h3>
+                        <p>Edinburgh, 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 5 ========== -->
+            <div class="gallery-item" onclick="openModal(4)">
+                <img src="https://live.staticflickr.com/65535/55012050894_88f628d9af_b.jpg"
+                    alt="Modern Heights" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>Modern Heights</h3>
+                        <p>London, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 6 ========== -->
+            <div class="gallery-item" onclick="openModal(5)">
+                <img src="https://live.staticflickr.com/65535/55010973682_ef14bb251d_b.jpg"
+                    alt="Smoke Show" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>Smoke Show</h3>
+                        <p>Birmingham, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 7 ========== -->
+            <div class="gallery-item" onclick="openModal(6)">
+                <img src="https://live.staticflickr.com/65535/55012167990_f5c21a0ffc_b.jpg"
+                    alt="ELMS LMP3" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>ELMS LMP3</h3>
+                        <p>Silverstone, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== IMAGE 8 ========== -->
+            <div class="gallery-item" onclick="openModal(7)">
+                <img src="https://live.staticflickr.com/65535/55010973677_8311ca7cbd_b.jpg" alt="ELMS GT3" style="width:100%;height:100%;object-fit:cover;">
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-info">
+                        <h3>ELMS GT3</h3>
+                        <p>Silverstone, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-content">
+            <h2>More Than <span>Photography</span></h2>
+            <p>When I'm not behind the camera, you'll find me in the kitchen experimenting with new recipes, or pushing
+                lap times on my sim racing rig. Life is a beautiful tapestry of passions, and I believe in embracing
+                every thread.</p>
+            <p>From late-night coding sessions during university to capturing the perfect sunrise—my journey has been
+                anything but conventional. Now, I'm ready to share these stories with you.</p>
+            <div class="about-tags">
+                <span class="tag">Photography</span>
+                <span class="tag">Cooking</span>
+                <span class="tag">Baking</span>
+                <span class="tag">Sim Racing</span>
+                <span class="tag">Coding</span>
+                <span class="tag">Storytelling</span>
+            </div>
+        </div>
+        <div class="about-image">
+            <!-- ============================================
+                 ABOUT SECTION LIFESTYLE IMAGE
+            ============================================ -->
+            <img src="https://live.staticflickr.com/65535/55011861521_6db58c0312_b.jpg" alt="Lifestyle Photo"
+                style="width:100%;height:100%;object-fit:cover;">
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="Story">Story</a>
+            <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
+            <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
+            <a asp-controller="Home" asp-action="Blog">Blog</a>
+            <a asp-controller="Home" asp-action="Projects">Projects</a>
+            <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">Shop</a>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+
+    <div class="modal" id="photoModal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-content">
+            <div class="modal-image">
+                <div class="modal-image-placeholder" id="modalImagePlaceholder">FULL IMAGE</div>
+            </div>
+            <div class="modal-details">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle">Photo Title</h3>
+                    <div class="modal-meta">
+                        <div class="modal-meta-item">
+                            <span class="modal-meta-label">Location</span>
+                            <span class="modal-meta-value" id="modalLocation">Location</span>
+                        </div>
+                        <div class="modal-meta-item">
+                            <span class="modal-meta-label">Date</span>
+                            <span class="modal-meta-value" id="modalDate">Date</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-description">
+                    <h4>The Story</h4>
+                    <p id="modalDescription">Description goes here.</p>
+                </div>
+                <div class="modal-love">
+                    <h4>What I Love About This Shot</h4>
+                    <p id="modalLove">What I love about it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
