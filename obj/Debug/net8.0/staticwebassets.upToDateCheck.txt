@@ -2,13 +2,13 @@ wwwroot\css\blog.css
 wwwroot\css\hobbies.css
 wwwroot\css\kitchen.css
 wwwroot\css\projects.css
-wwwroot\css\site.css
+wwwroot\js\site.js
 wwwroot\css\story.css
 wwwroot\Favicon.png
 wwwroot\js\blog.js
 wwwroot\js\kitchen.js
 wwwroot\js\projects.js
-wwwroot\js\site.js
+wwwroot\css\site.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -67,4 +67,3 @@ wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\res\SachinBhasinPortrait.jpeg
-wwwroot\res\Shortbread.jpg

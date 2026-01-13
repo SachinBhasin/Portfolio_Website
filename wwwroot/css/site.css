@@ -499,43 +499,23 @@ header {
 
 .modal-header {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .modal-title {
     font-size: 2rem;
     font-weight: 300;
-    margin-bottom: 1rem;
-}
-
-.modal-meta {
-    display: flex;
-    gap: 2rem;
-}
-
-.modal-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.modal-meta-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
-.modal-meta-value {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
 }
 
 .modal-divider {
     height: 1px;
     background: var(--border);
-    margin: 2rem 0;
+    width: 100%;
+    margin: 1rem 0;
 }
 
 .modal-description {

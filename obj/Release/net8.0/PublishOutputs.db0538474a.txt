@@ -1,7 +1,0 @@
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\SachinPortfolio.exe
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\appsettings.json
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\SachinPortfolio.dll
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\SachinPortfolio.deps.json
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\SachinPortfolio.runtimeconfig.json
-C:\Users\Harry\Documents\Harry\website\SachinPortfolio\obj\Release\net8.0\PubTmp\Out\SachinPortfolio.pdb
