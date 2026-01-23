@@ -1,0 +1,211 @@
+/* ================================
+   COLLECTIONS PAGE STYLES
+   Flat chronological layout
+   ================================ */
+
+/* Header with Search */
+.collections-header {
+    margin-bottom: 1.5rem;
+}
+
+.search-container {
+    margin-top: 1.25rem;
+}
+
+.search-input {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 1.25rem;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.search-input:focus {
+    border-color: var(--accent);
+}
+
+/* Results Info */
+.results-info {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: none;
+}
+
+/* Collections Container */
+.collections-container {
+    margin-top: 1rem;
+}
+
+/* Event Block */
+.event-block {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--glass-border);
+}
+
+.event-block:first-child {
+    border-top: none;
+    padding-top: 0.5rem;
+}
+
+/* Location */
+.event-location {
+    font-family: 'Anton', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+/* Event Header */
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.event-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.event-date {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+}
+
+.event-separator {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.event-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-primary);
+}
+
+/* Coming Soon */
+.coming-soon-badge {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg-primary);
+    background: var(--text-muted);
+    padding: 0.25rem 0.6rem;
+    border-radius: 10px;
+}
+
+.event-block.coming-soon .event-name {
+    color: var(--text-muted);
+}
+
+.event-block.coming-soon .event-location {
+    color: var(--text-muted);
+}
+
+.event-block.coming-soon .event-date {
+    color: var(--text-muted);
+}
+
+/* Flickr Link */
+.flickr-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.flickr-link:hover {
+    color: var(--accent);
+}
+
+/* Event Photos */
+.event-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.event-photo {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.event-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.no-results p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .event-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .event-photos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-photos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .event-photo:nth-child(3) {
+        display: none;
+    }
+}

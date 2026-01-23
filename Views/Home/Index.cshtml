@@ -1,243 +1,148 @@
-﻿@{
+@{
     ViewData["Title"] = "Home";
 }
 
 <head>
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachin Bhasin | Home</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css">
 </head>
-
 <body>
 
-    <header>
-        <div class="nav-title">
-            <span class="my">My</span>
-            <div class="nav-dropdown">
-                <span class="nav-current">Life</span>
-                <div class="nav-dropdown-menu">
-                    <a asp-controller="Home" asp-action="Index" class="active">Home</a>
-                    <a asp-controller="Home" asp-action="Story">Story</a>
-                    <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
-                    <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
-                    <a asp-controller="Home" asp-action="Blog">Blog</a>
-                    <a asp-controller="Home" asp-action="Projects">Projects</a>
-                    <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">My Shop ↗</a>
+    <nav class="pill-nav">
+        <a asp-controller="Home" asp-action="index" class="nav-link active">Home</a>
+        <a asp-controller="Home" asp-action="about" class="nav-link">About</a>
+        <a asp-controller="Home" asp-action="collections" class="nav-link">Collections</a>
+        <a asp-controller="Home" asp-action="recipes" class="nav-link">Recipes</a>
+        <a asp-controller="Home" asp-action="blog" class="nav-link">Blog</a>
+        <span class="nav-link coming-soon-btn">Coming Soon™</span>
+    </nav>
+
+    <main class="home-container">
+        <div class="tiles-wrapper">
+            <!-- Hero Tile -->
+            <section class="hero-tile glass-tile">
+                <div class="hero-content">
+                    <p class="hero-greeting">Welcome to my world</p>
+                    <h1 class="hero-name">Sachin <span>Bhasin</span></h1>
+                    <p class="hero-title">Photographer • Storyteller • Explorer</p>
+                    <p class="hero-description">
+                        Building a life around curiosity and craft, exploring the world through a lens while learning something new with every single frame.
+                    </p>
+                    <p class="hero-journey">
+                        2024 was the year for learning.<br>
+                        2025 was the year for understanding.<br>
+                        2026 will be the year of becoming.
+                    </p>
                 </div>
-            </div>
+                <div class="hero-portrait">
+                    <img src="/res/SachinBhasinPortrait.jpeg" alt="Sachin Bhasin">
+                </div>
+            </section>
+
+            <!-- What's New Section -->
+            <section class="featured-tile glass-tile">
+                <h2 class="featured-title">What's <span>New</span></h2>
+                <div class="activity-feed">
+                    <!--
+                        ACTIVITY FEED ITEMS
+                        ===================
+                        - Set the data-date attribute to the actual date (YYYY-MM-DD format)
+                        - The JavaScript will automatically calculate "X days/weeks/months ago"
+                        - Update the href, icon, type, and name as needed
+                    -->
+                    
+                    <!-- Activity Item 1 - Recipe -->
+                    <a asp-controller="Home" asp-action="recipes" class="activity-item" data-date="2026-01-15">
+                        <div class="activity-icon">🍳</div>
+                        <div class="activity-content">
+                            <span class="activity-type">New Recipe</span>
+                            <span class="activity-name">Berry Ricotta Cake</span>
+                        </div>
+                        <span class="activity-date"></span>
+                    </a>
+                    
+                    <div class="activity-divider"></div>
+                    
+                    <!-- Activity Item 2 - Blog -->
+                    <a asp-controller="Home" asp-action="blog" class="activity-item" data-date="2026-01-01">
+                        <div class="activity-icon">📝</div>
+                        <div class="activity-content">
+                            <span class="activity-type">New Blog Post</span>
+                            <span class="activity-name">"Laying the Groundwork for 2026"</span>
+                        </div>
+                        <span class="activity-date"></span>
+                    </a>
+                    
+                    <div class="activity-divider"></div>
+                    
+                    <!-- Activity Item 3 - Collection -->
+                    <a asp-controller="Home" asp-action="collections" class="activity-item" data-date="2025-09-20">
+                        <div class="activity-icon">📷</div>
+                        <div class="activity-content">
+                            <span class="activity-type">New Collection Added</span>
+                            <span class="activity-name">Silverstone 2025 — European Le Mans Series</span>
+                        </div>
+                        <span class="activity-date"></span>
+                    </a>
+                </div>
+            </section>
         </div>
-        <a asp-controller="Home" asp-action="Blog" class="blog-btn"><span>Read My Blog</span></a>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-greeting">Welcome to my world</p>
-            <h1 class="hero-name">Sachin<span>Bhasin</span></h1>
-            <p class="hero-title">Photographer • Storyteller • Explorer</p>
-            <p class="hero-description">
-                Building a life around curiosity and craft, exploring the world through a lens while learning something new with every single frame.
-                <br> <br>
-                2024 was the year for learning.
-                <br>
-                2025 was the year for understanding.
-                <br>
-                2026 will be the year of becoming.
-            </p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">2017</div>
-                    <div class="stat-label">Est.</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">D300S</div>
-                    <div class="stat-label">Current Camera</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">Visual</div>
-                    <div class="stat-label">Storyteller</div>
-                </div>
+        <!-- Footer -->
+        <footer class="footer-tile glass-tile">
+            <div class="footer-brand">Sachin <span>Bhasin</span></div>
+            <div class="footer-links">
+                <a asp-controller="Home" asp-action="index">Home</a>
+                <a asp-controller="Home" asp-action="about">About</a>
+                <a asp-controller="Home" asp-action="collections">Collections</a>
+                <a asp-controller="Home" asp-action="recipes">Recipes</a>
+                <a asp-controller="Home" asp-action="blog">Blog</a>
+                <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
             </div>
-        </div>
+            <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+        </footer>
+    </main>
 
-        <div class="hero-visual">
-            <!-- ============================================
-                 HERO PORTRAIT IMAGE
-                 Replace the div below with an img tag:
-            ============================================ -->
-                <img src="/res/SachinBhasinPortrait.jpeg" alt="Sachin Bhasin Portrait" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-    </section>
+    <script>
+        // Calculate relative time (e.g., "2 days ago", "1 week ago")
+        function getRelativeTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) return 'Today';
+            if (diffDays === 1) return 'Yesterday';
+            if (diffDays < 7) return `${diffDays} days ago`;
+            if (diffDays < 14) return '1 week ago';
+            if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+            if (diffDays < 60) return '1 month ago';
+            if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+            if (diffDays < 730) return '1 year ago';
+            return `${Math.floor(diffDays / 365)} years ago`;
+        }
+        
+        // Apply relative dates to activity items
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.activity-item[data-date]').forEach(item => {
+                const dateSpan = item.querySelector('.activity-date');
+                const date = item.getAttribute('data-date');
+                if (dateSpan && date) {
+                    dateSpan.textContent = getRelativeTime(date);
+                }
+            });
+        });
+    </script>
 
-    <!-- ================================================================
-         GALLERY SECTION - SELECTED WORKS
-         
-         HOW TO ADD/EDIT IMAGES:
-         1. Each gallery-item div represents one photo in the grid
-         2. Replace the gallery-placeholder div with an img tag
-         3. Update the corresponding entry in the 'photos' array in JavaScript
-         
-         Example:
-         Change: <div class="gallery-placeholder">IMAGE 01</div>
-         To:     <img src="your-image-url.jpg" alt="Photo title">
-    ================================================================ -->
-    <section class="gallery-section">
-        <div class="section-header">
-            <div>
-                <p class="section-subtitle">Portfolio</p>
-                <h2 class="section-title">Selected <span>Works</span></h2>
-            </div>
-            <p class="section-subtitle">Click to explore</p>
-        </div>
-        <div class="gallery-grid">
-
-            <!-- ========== IMAGE 1 ========== -->
-            <div class="gallery-item" onclick="openModal(0)">
-                <img src="https://live.staticflickr.com/65535/55012048159_02c57d8ebf_b.jpg"
-                    alt="Eye to Eye" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>Eye to Eye</h3>
-                        <p>North Yorkshire, 2023</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 2 ========== -->
-            <div class="gallery-item" onclick="openModal(1)">
-                <img src="https://live.staticflickr.com/65535/55011792536_caeeb37852_b.jpg"
-                    alt="The Coos" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>The Coos</h3>
-                        <p>North Yorkshire, 2024</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 3 ========== -->
-            <div class="gallery-item" onclick="openModal(2)">
-                <img src="https://live.staticflickr.com/65535/55012100510_83e778ebe2_b.jpg"
-                    alt="What Time?" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>What Time?</h3>
-                        <p>Edinburgh, 2024</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 4 ========== -->
-            <div class="gallery-item" onclick="openModal(3)">
-                <img src="https://live.staticflickr.com/65535/55010905167_865a1c43b5_b.jpg"
-                    alt="Hidden in Plain Sight" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>Hidden in Plain Sight</h3>
-                        <p>Edinburgh, 2024</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 5 ========== -->
-            <div class="gallery-item" onclick="openModal(4)">
-                <img src="https://live.staticflickr.com/65535/55012050894_88f628d9af_b.jpg"
-                    alt="Modern Heights" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>Modern Heights</h3>
-                        <p>London, 2025</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 6 ========== -->
-            <div class="gallery-item" onclick="openModal(5)">
-                <img src="https://live.staticflickr.com/65535/55010973682_ef14bb251d_b.jpg"
-                    alt="Smoke Show" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>Smoke Show</h3>
-                        <p>Birmingham, 2025</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 7 ========== -->
-            <div class="gallery-item" onclick="openModal(6)">
-                <img src="https://live.staticflickr.com/65535/55012167990_f5c21a0ffc_b.jpg"
-                    alt="ELMS LMP3" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>ELMS LMP3</h3>
-                        <p>Silverstone, 2025</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========== IMAGE 8 ========== -->
-            <div class="gallery-item" onclick="openModal(7)">
-                <img src="https://live.staticflickr.com/65535/55010973677_8311ca7cbd_b.jpg" alt="ELMS GT3" style="width:100%;height:100%;object-fit:cover;">
-                <div class="gallery-item-overlay">
-                    <div class="gallery-item-info">
-                        <h3>ELMS GT3</h3>
-                        <p>Silverstone, 2025</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="about-section">
-        <div class="about-content">
-            <h2>More Than <span>Photography</span></h2>
-            <p>When I'm not taking photos, I'm buried in editing the thousands I've already taken, trying new recipes in the kitchen, gaming, reading through my ever-growing book list, or finding an excuse to get outside for a hike. I'm also dusting off my old coding skills from university—seeing what I remember and where it might lead.</p>
-            <p>Every day is an opportunity to build towards something better. From photography to the kitchen to getting back into coding—I'm embracing every chance to grow.</p>
-            <div class="about-tags">
-                <span class="tag">Learning</span>
-                <span class="tag">Understanding</span>
-                <span class="tag">Becoming</span>
-            </div>
-        </div>
-        <div class="about-image">
-            <img src="https://live.staticflickr.com/65535/55011861521_6db58c0312_b.jpg" alt="Lifestyle Photo"
-                style="width:100%;height:100%;object-fit:cover;">
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-brand">Sachin <span>Bhasin</span></div>
-        <div class="footer-links">
-            <a asp-controller="Home" asp-action="Index">Home</a>
-            <a asp-controller="Home" asp-action="Story">Story</a>
-            <a asp-controller="Home" asp-action="Hobbies">Hobbies</a>
-            <a asp-controller="Home" asp-action="Kitchen">Kitchen</a>
-            <a asp-controller="Home" asp-action="Blog">Blog</a>
-            <a asp-controller="Home" asp-action="Projects">Projects</a>
-            <a href="https://www.etsy.com/shop/SachinOptics" target="_blank">My Shop</a>
-            <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
-        </div>
-        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
-    </footer>
-
-    <div class="modal" id="photoModal">
-        <button class="modal-close" onclick="closeModal()">×</button>
-        <div class="modal-content">
-            <div class="modal-image">
-                <div class="modal-image-placeholder" id="modalImagePlaceholder">FULL IMAGE</div>
-            </div>
-            <div class="modal-details">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="modalTitle">Photo Title</h3>
-                </div>
-                <div class="modal-description">
-                    <h4>The Story</h4>
-                    <p id="modalDescription">Description goes here.</p>
-                </div>
-                <div class="modal-love">
-                    <h4>What I Love About This Shot</h4>
-                    <p id="modalLove">What I love about it.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
+</html>

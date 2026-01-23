@@ -18,27 +18,22 @@ namespace SachinPortfolio.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Collections()
+        {
+            return View();
+        }
+
+        public IActionResult Recipes()
+        {
+            return View();
+        }
+
         public IActionResult Blog()
-        {
-            return View();
-        }
-
-        public IActionResult Hobbies()
-        {
-            return View();
-        }
-
-        public IActionResult Kitchen()
-        {
-            return View();
-        }
-
-        public IActionResult Projects()
-        {
-            return View();
-        }
-
-        public IActionResult Story()
         {
             return View();
         }

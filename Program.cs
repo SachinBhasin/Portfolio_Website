@@ -23,29 +23,24 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+        name: "about",
+        pattern: "About",
+        defaults: new { controller = "Home", action = "About" });
+
+    endpoints.MapControllerRoute(
+        name: "collections",
+        pattern: "Collections",
+        defaults: new { controller = "Home", action = "Collections" });
+
+    endpoints.MapControllerRoute(
+        name: "recipes",
+        pattern: "Recipes",
+        defaults: new { controller = "Home", action = "Recipes" });
+
+    endpoints.MapControllerRoute(
         name: "blog",
         pattern: "Blog",
         defaults: new { controller = "Home", action = "Blog" });
-
-    endpoints.MapControllerRoute(
-        name: "hobbies",
-        pattern: "Hobbies",
-        defaults: new { controller = "Home", action = "Hobbies" });
-
-    endpoints.MapControllerRoute(
-        name: "kitchen",
-        pattern: "Kitchen",
-        defaults: new { controller = "Home", action = "Kitchen" });
-
-    endpoints.MapControllerRoute(
-        name: "story",
-        pattern: "Story",
-        defaults: new { controller = "Home", action = "Story" });
-
-    endpoints.MapControllerRoute(
-        name: "projects",
-        pattern: "Projects",
-        defaults: new { controller = "Home", action = "Projects" });
 });
 
 app.MapControllerRoute(

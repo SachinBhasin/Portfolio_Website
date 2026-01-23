@@ -1,0 +1,335 @@
+/* ================================
+   ABOUT PAGE STYLES
+   Zigzag Timeline Layout
+   ================================ */
+
+/* ================================
+   BIO INTRO SECTION
+   ================================ */
+.bio-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 1rem auto 0;
+    padding: 2rem;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+}
+
+.bio-text {
+    flex: 1;
+}
+
+.bio-text p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.bio-text p:last-child {
+    margin-bottom: 0;
+}
+
+.bio-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bio-stat {
+    text-align: left;
+}
+
+.bio-stat-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--glass-border);
+}
+
+.bio-stat-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.bio-stat-value {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+}
+
+/* Bio Intro Responsive */
+@media (max-width: 768px) {
+    .bio-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .bio-stats {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .bio-stat {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .bio-intro {
+        padding: 1.5rem;
+    }
+    
+    .bio-text p {
+        font-size: 1rem;
+    }
+    
+    .bio-stats {
+        gap: 2rem;
+    }
+    
+    .bio-stat-value {
+        font-size: 2rem;
+    }
+}
+
+/* ================================
+   ZIGZAG TIMELINE
+   ================================ */
+
+/* Zigzag Timeline Container */
+.zigzag-timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 2rem auto 0;
+    padding: 2rem 0;
+}
+
+/* Center line */
+.zigzag-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--glass-border);
+}
+
+/* Timeline Item */
+.zigzag-item {
+    position: relative;
+    width: 50%;
+    padding: 0 2.5rem 3rem;
+    box-sizing: border-box;
+}
+
+/* Left side items */
+.zigzag-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+/* Right side items */
+.zigzag-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+
+/* Timeline marker (dot on the line) */
+.zigzag-marker {
+    position: absolute;
+    top: 0.5rem;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.zigzag-item:nth-child(odd) .zigzag-marker {
+    right: -8px;
+}
+
+.zigzag-item:nth-child(even) .zigzag-marker {
+    left: -8px;
+}
+
+.zigzag-item:hover .zigzag-marker {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(212, 165, 116, 0.5);
+}
+
+/* Card */
+.zigzag-card {
+    background: rgba(30, 30, 30, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.zigzag-item:hover .zigzag-card {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Card Image */
+.zigzag-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--glass-border);
+}
+
+/* Card Content */
+.zigzag-date {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.zigzag-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.zigzag-item:hover .zigzag-title {
+    color: var(--accent);
+}
+
+.zigzag-description {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Links Section */
+.zigzag-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.zigzag-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    background: rgba(212, 165, 116, 0.1);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.zigzag-link:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+}
+
+.zigzag-link-icon {
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .zigzag-timeline::before {
+        left: 20px;
+    }
+    
+    .zigzag-item {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 50px;
+        padding-right: 0;
+        text-align: left !important;
+    }
+    
+    .zigzag-item:nth-child(odd) .zigzag-marker,
+    .zigzag-item:nth-child(even) .zigzag-marker {
+        left: 12px;
+        right: auto;
+    }
+    
+    .zigzag-card {
+        text-align: left;
+    }
+    
+    .zigzag-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .zigzag-timeline {
+        padding: 1rem 0;
+    }
+    
+    .zigzag-item {
+        padding-left: 40px;
+        padding-bottom: 2rem;
+    }
+    
+    .zigzag-timeline::before {
+        left: 15px;
+    }
+    
+    .zigzag-item:nth-child(odd) .zigzag-marker,
+    .zigzag-item:nth-child(even) .zigzag-marker {
+        left: 7px;
+    }
+    
+    .zigzag-card {
+        padding: 1rem;
+    }
+    
+    .zigzag-title {
+        font-size: 1.2rem;
+    }
+    
+    .zigzag-description {
+        font-size: 0.85rem;
+    }
+}

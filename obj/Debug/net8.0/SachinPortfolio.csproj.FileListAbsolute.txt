@@ -15,9 +15,7 @@ F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\SachinPortfolio.sourcelink
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\rjimswa.dswa.cache.json
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\scopedcss\bundle\SachinPortfolio.styles.css
-F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\scopedcss\projectbundle\SachinPortfolio.bundle.scp.css
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\staticwebassets.build.json
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\staticwebassets.build.json.cache
 F:\Building Websites\SachinBhasinDev\obj\Debug\net8.0\staticwebassets.development.json

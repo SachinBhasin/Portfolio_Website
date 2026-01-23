@@ -1,3 +1,7 @@
+/* ================================
+   SHARED STYLES - ALL PAGES
+   ================================ */
+
 :root {
     --bg-primary: #0a0a0a;
     --bg-secondary: #141414;
@@ -13,6 +17,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 /* ================================
    CUSTOM SCROLLBAR - GLOBAL
@@ -44,6 +49,7 @@ body {
     font-family: 'Outfit', sans-serif;
     color: var(--text-primary);
     line-height: 1.6;
+    min-height: 100vh;
     background: url('https://images.wallpaperscraft.com/image/single/winter_snow_silhouette_131193_3840x2400.jpg') center/cover no-repeat fixed;
 }
 
@@ -94,7 +100,6 @@ body::before {
     position: relative;
 }
 
-/* Underline animation from centre */
 .pill-nav .nav-link::after {
     content: '';
     position: absolute;
@@ -115,7 +120,6 @@ body::before {
     width: calc(100% - 2rem);
 }
 
-/* Active state */
 .pill-nav .nav-link.active {
     color: var(--accent);
     font-weight: 600;
@@ -144,7 +148,6 @@ body::before {
     color: var(--bg-primary);
 }
 
-/* Dropdown container */
 .pill-nav .nav-item {
     position: relative;
 }
@@ -158,7 +161,6 @@ body::before {
     height: 1.5rem;
 }
 
-/* Dropdown menu */
 .pill-nav .nav-dropdown {
     position: absolute;
     top: calc(100% + 0.75rem);
@@ -169,13 +171,14 @@ body::before {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 15px;
-    min-width: 180px;
+    min-width: 200px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     padding: 0.5rem 0;
     z-index: 1001;
+    white-space: nowrap;
 }
 
 .pill-nav .nav-item.has-dropdown:hover .nav-dropdown {
@@ -215,10 +218,10 @@ body::before {
 }
 
 /* ================================
-   MAIN CONTAINER - NO SCROLL LAYOUT
+   PAGE CONTAINER
    ================================ */
-.home-container {
-    height: 100vh;
+.page-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 6rem 2rem 2rem;
@@ -226,13 +229,9 @@ body::before {
     margin: 0 auto;
 }
 
-/* Wrapper for hero + featured tiles */
-.tiles-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
+/* Wide container for recipe category pages */
+.page-container.wide {
+    max-width: 1250px;
 }
 
 /* ================================
@@ -248,212 +247,34 @@ body::before {
 }
 
 /* ================================
-   HERO TILE
+   CONTENT TILE
    ================================ */
-.hero-tile {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    padding: 1.5rem;
-    padding-left: 3rem;
-    width: 100%;
-    gap: 2rem;
+.content-tile {
+    flex: 1;
+    padding: 2.5rem 3rem;
+    margin-bottom: 1.5rem;
 }
 
-.hero-content {
-    max-width: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.5rem 0;
-}
-
-.hero-name {
+.page-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 300;
-    line-height: 1.1;
     margin-bottom: 0.5rem;
 }
 
-.hero-name span {
+.page-title span {
     font-style: italic;
     color: var(--accent);
 }
 
-.hero-divider {
-    display: none;
-}
-
-.hero-greeting {
+.page-subtitle {
     font-family: 'Outfit', sans-serif;
     font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
-
-.hero-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.hero-title em {
-    font-style: normal;
-}
-
-.hero-description {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-}
-
-.hero-journey {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--text-secondary);
-    line-height: 2;
-}
-
-.hero-journey br {
-    content: '';
-}
-
-/* Portrait */
-.hero-portrait {
-    width: 280px;
-    height: calc(100% - 3rem);
-    min-height: 280px;
-    border-radius: 15px;
-    border: 1px solid var(--glass-border);
-    overflow: hidden;
-    flex-shrink: 0;
-    margin: 1.5rem 0;
-}
-
-.hero-portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.portrait-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(30, 30, 30, 0.5);
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
     color: var(--text-muted);
-}
-
-/* ================================
-   WHAT'S NEW / ACTIVITY FEED
-   ================================ */
-.featured-tile {
-    padding: 1.5rem 2rem;
-    width: 100%;
-}
-
-.featured-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-}
-
-.featured-title span {
-    font-style: italic;
-    color: var(--accent);
-}
-
-.activity-feed {
-    display: flex;
-    flex-direction: column;
-}
-
-.activity-item {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-radius: 10px;
-}
-
-.activity-item:hover {
-    background: rgba(212, 165, 116, 0.08);
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-.activity-icon {
-    font-size: 1.5rem;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(30, 30, 30, 0.6);
-    border: 1px solid var(--glass-border);
-    border-radius: 10px;
-    flex-shrink: 0;
-}
-
-.activity-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-
-.activity-type {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-}
-
-.activity-name {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--text-primary);
-}
-
-.activity-date {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    flex-shrink: 0;
-}
-
-.activity-divider {
-    height: 1px;
-    background: var(--glass-border);
-    margin: 0 0.5rem;
+    margin-bottom: 2rem;
 }
 
 /* ================================
@@ -509,42 +330,7 @@ body::before {
 /* ================================
    RESPONSIVE
    ================================ */
-@media (max-width: 1200px) {
-    .home-container {
-        padding: 5rem 2rem 1.5rem;
-    }
-    
-    .hero-tile {
-        padding: 2rem;
-    }
-    
-    .hero-portrait {
-        width: 180px;
-        height: 220px;
-    }
-}
-
-@media (max-width: 992px) {
-    .activity-item {
-        gap: 1rem;
-    }
-    
-    .activity-name {
-        font-size: 1rem;
-    }
-}
-
 @media (max-width: 768px) {
-    html, body {
-        overflow: auto;
-    }
-    
-    .home-container {
-        height: auto;
-        min-height: 100vh;
-        padding: 5rem 1.5rem 1.5rem;
-    }
-    
     .pill-nav {
         top: 1rem;
         padding: 0.4rem 0.8rem;
@@ -557,35 +343,12 @@ body::before {
         padding: 0.5rem 0.7rem;
     }
     
-    .hero-tile {
-        flex-direction: column;
-        text-align: center;
+    .page-container {
+        padding: 5rem 1.5rem 1.5rem;
+    }
+    
+    .content-tile {
         padding: 2rem 1.5rem;
-        gap: 2rem;
-    }
-    
-    .hero-content {
-        max-width: 100%;
-    }
-    
-    .hero-divider {
-        margin: 0 auto 1rem;
-    }
-    
-    .hero-portrait {
-        width: 150px;
-        height: 180px;
-    }
-    
-    .activity-item {
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
-    
-    .activity-date {
-        width: 100%;
-        padding-left: calc(45px + 0.75rem);
-        margin-top: -0.5rem;
     }
     
     .footer-tile {
@@ -606,20 +369,5 @@ body::before {
         flex-wrap: wrap;
         border-radius: 20px;
         justify-content: center;
-    }
-    
-    .activity-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.25rem;
-    }
-    
-    .activity-name {
-        font-size: 0.95rem;
-    }
-    
-    .activity-date {
-        padding-left: calc(40px + 0.75rem);
-        font-size: 0.7rem;
     }
 }
