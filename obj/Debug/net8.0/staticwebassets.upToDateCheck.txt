@@ -5,6 +5,12 @@ wwwroot\css\recipes.css
 wwwroot\css\shared.css
 wwwroot\css\site.css
 wwwroot\Favicon.png
+wwwroot\js\blog.js
+wwwroot\js\collections.js
+wwwroot\js\data\all-recipes.js
+wwwroot\js\data\collections-data.js
+wwwroot\js\recipes-filter.js
+wwwroot\js\recipes.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -64,9 +70,3 @@ wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\res\SachinBhasinPortrait.jpeg
 wwwroot\js\about.js
-wwwroot\js\blog.js
-wwwroot\js\collections.js
-wwwroot\js\data\all-recipes.js
-wwwroot\js\data\collections-data.js
-wwwroot\js\recipes-filter.js
-wwwroot\js\recipes.js

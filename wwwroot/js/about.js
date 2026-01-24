@@ -33,13 +33,13 @@ const timelineData = [
         title: "Birthday Trip",
         date: "July 2024",
         description: "Having graduated from university and approaching the end of my first year working, I took my first solo trip to Edinburgh. That city ignited my passion for photography in ways I hadn't expected.",
-        image: "https://live.staticflickr.com/65535/55057175631_869b776ac7_o.jpg?s=eyJpIjo1NTA1NzE3NTYzMSwiZSI6MTc2OTIwMDU2OCwicyI6ImU5OTAyMDUzYWNmMTc0NTk3ZjIyZTI3YWExMGJhYmJiYzU4YWFhY2MiLCJ2IjoxfQ",
+        image: "https://live.staticflickr.com/65535/55057175631_869b776ac7_b.jpg",
         momentsLink: "https://www.flickr.com/photos/204067982@N08/albums/72177720331622861",
     },
     {
         title: "Website Planning",
         date: "December 2025",
-        description: "Having recently lost my job to AI, I decided to expand my photography presence. With limited connections and a small Instagram following, I finally joined the club and created my own website. I had a Computer Science degree, after all—time to put it to use. The planning phase began: colours, style, layout, and more.",
+        description: "Having recently lost my job to AI, I decided to expand my photography presence. With limited connections and a small Instagram following, I finally joined the club and started the work to create my own website. I had a Computer Science degree, after all—time to put it to use. The planning phase began: colours, style, layout, and more.",
     },
     {
         title: "The Present Day",
