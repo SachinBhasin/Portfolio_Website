@@ -2,166 +2,150 @@
     ViewData["Title"] = "Blog";
 }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Sachin Bhasin</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/shared.css">
+@section Styles {
     <link rel="stylesheet" href="~/css/blog.css">
-</head>
-<body>
+}
 
-    <nav class="pill-nav">
-        <a asp-controller="Home" asp-action="index" class="nav-link">Home</a>
-        <a asp-controller="Home" asp-action="about" class="nav-link">About</a>
-        <a asp-controller="Home" asp-action="collections" class="nav-link">Collections</a>
-        <a asp-controller="Home" asp-action="recipes" class="nav-link">Recipes</a>
-        <a asp-controller="Home" asp-action="blog" class="nav-link active">Blog</a>
-        <span class="nav-link coming-soon-btn">Coming Soon™</span>
-    </nav>
-
-    <main class="page-container wide">
-        <section class="content-tile glass-tile">
-            <h1 class="page-title">My <span>Blog</span></h1>
-            <p class="page-subtitle">Thoughts, stories & reflections</p>
+<main class="page-container wide">
+    <section class="content-tile glass-tile">
+        <h1 class="page-title">My <span>Blog</span></h1>
+        <p class="page-subtitle">Thoughts, stories & reflections</p>
+        
+        <div class="blog-layout">
+            <div class="blog-posts">
+                <article class="blog-card featured" onclick="openBlogModal(0)">
+                    <!-- Remove image section when a new post is being created -->
+                    <div class="blog-card-image">
+                        <img src="https://live.staticflickr.com/65535/55017876808_38e4abb438_b.jpg" alt="Blog post image">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-date">January 1, 2026</span>
+                        <h3 class="blog-card-title">Laying the Groundwork for 2026</h3>
+                        <p class="blog-card-excerpt">Instead of chasing big goals without foundations, I'm starting 2026 by building them right. From launching this website to networking at Silverstone, I'm learning that failure is where growth begins...</p>
+                        <span class="blog-card-readtime">7 min read</span>
+                    </div>
+                </article>
+                
+                <article class="blog-card compact" onclick="openBlogModal(1)">
+                    <div class="blog-card-content">
+                        <span class="blog-card-date">December 31, 2025</span>
+                        <h3 class="blog-card-title">Reflecting on 2025</h3>
+                        <p class="blog-card-excerpt">From burnt friendships to redundancy, a family loss to my brother's wedding, I learned to pick myself back up. This year tested me, but it also taught me lessons that prepared me for 2026...</p>
+                        <span class="blog-card-readtime">5 min read</span>
+                    </div>
+                </article>
+            </div>
             
-            <div class="blog-layout">
-                <div class="blog-posts">
-                    <article class="blog-card featured" onclick="openBlogModal(0)">
-                        <!-- Remove image section when a new post is being created -->
-                        <div class="blog-card-image">
-                            <img src="https://live.staticflickr.com/65535/55017876808_38e4abb438_b.jpg" alt="Blog post image">
-                        </div>
-                        <div class="blog-card-content">
-                            <span class="blog-card-date">January 1, 2026</span>
-                            <h3 class="blog-card-title">Laying the Groundwork for 2026</h3>
-                            <p class="blog-card-excerpt">Instead of chasing big goals without foundations, I'm starting 2026 by building them right. From launching this website to networking at Silverstone, I'm learning that failure is where growth begins...</p>
-                            <span class="blog-card-readtime">7 min read</span>
-                        </div>
-                    </article>
+            <!-- Goals Sidebar -->
+            <div class="goals-sidebar">
+                <h2 class="goals-title">2026 <span>Goals</span></h2>
+                
+                <div class="goals-list">
+                    <!-- Goal 1 -->
+                    <div class="goal-item completed">
+                        <span class="goal-marker"></span>
+                        <span class="goal-text">Launch personal website</span>
+                    </div>
                     
-                    <article class="blog-card compact" onclick="openBlogModal(1)">
-                        <div class="blog-card-content">
-                            <span class="blog-card-date">December 31, 2025</span>
-                            <h3 class="blog-card-title">Reflecting on 2025</h3>
-                            <p class="blog-card-excerpt">From burnt friendships to redundancy, a family loss to my brother's wedding, I learned to pick myself back up. This year tested me, but it also taught me lessons that prepared me for 2026...</p>
-                            <span class="blog-card-readtime">5 min read</span>
+                    <!-- Goal 2 -->
+                    <div class="goal-item completed">
+                        <span class="goal-marker"></span>
+                        <span class="goal-text">Start <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank" class="goal-link">Flickr</a> portfolio</span>
+                    </div>
+                    
+                    <!-- Goal 3 -->
+                    <div class="goal-item">
+                        <span class="goal-marker"></span>
+                        <span class="goal-text">Sell my first print</span>
+                    </div>
+                    
+                    <!-- Goal 4 - Expandable -->
+                    <div class="goal-item expandable" onclick="toggleGoalExpand(this)">
+                        <span class="goal-marker"></span>
+                        <span class="goal-text">Complete 5 Lake District Hikes</span>
+                        <span class="goal-expand-icon">+</span>
+                    </div>
+                    <div class="goal-sublist">
+                        <div class="goal-subitem">
+                            <span class="goal-marker"></span>
+                            <span class="goal-text">Friars Crag</span>
                         </div>
-                    </article>
+                        <div class="goal-subitem">
+                            <span class="goal-marker"></span>
+                            <span class="goal-text">Blea Tarn</span>
+                        </div>
+                        <div class="goal-subitem">
+                            <span class="goal-marker"></span>
+                            <span class="goal-text">Tarn Hows</span>
+                        </div>
+                        <div class="goal-subitem">
+                            <span class="goal-marker"></span>
+                            <span class="goal-text">Latrigg Fell</span>
+                        </div>
+                        <div class="goal-subitem">
+                            <span class="goal-marker"></span>
+                            <span class="goal-text">Gummers How</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Goal 5 -->
+                    <div class="goal-item">
+                        <span class="goal-marker"></span>
+                        <span class="goal-text">Visit Edinburgh Again</span>
+                    </div>
+                    
+                    <!-- Goal 6 -->
+                    <div class="goal-item">
+                        <span class="goal-marker"></span>
+                        <span class="goal-text">Get Back into Sim-Racing</span>
+                    </div>
                 </div>
                 
-                <!-- Goals Sidebar -->
-                <div class="goals-sidebar">
-                    <h2 class="goals-title">2026 <span>Goals</span></h2>
-                    
-                    <div class="goals-list">
-                        <!-- Goal 1 -->
-                        <div class="goal-item completed">
-                            <span class="goal-marker"></span>
-                            <span class="goal-text">Launch personal website</span>
-                        </div>
-                        
-                        <!-- Goal 2 -->
-                        <div class="goal-item completed">
-                            <span class="goal-marker"></span>
-                            <span class="goal-text">Start <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank" class="goal-link">Flickr</a> portfolio</span>
-                        </div>
-                        
-                        <!-- Goal 3 -->
-                        <div class="goal-item">
-                            <span class="goal-marker"></span>
-                            <span class="goal-text">Sell my first print</span>
-                        </div>
-                        
-                        <!-- Goal 4 - Expandable -->
-                        <div class="goal-item expandable" onclick="toggleGoalExpand(this)">
-                            <span class="goal-marker"></span>
-                            <span class="goal-text">Complete 5 Lake District Hikes</span>
-                            <span class="goal-expand-icon">+</span>
-                        </div>
-                        <div class="goal-sublist">
-                            <div class="goal-subitem">
-                                <span class="goal-marker"></span>
-                                <span class="goal-text">Friars Crag</span>
-                            </div>
-                            <div class="goal-subitem">
-                                <span class="goal-marker"></span>
-                                <span class="goal-text">Blea Tarn</span>
-                            </div>
-                            <div class="goal-subitem">
-                                <span class="goal-marker"></span>
-                                <span class="goal-text">Tarn Hows</span>
-                            </div>
-                            <div class="goal-subitem">
-                                <span class="goal-marker"></span>
-                                <span class="goal-text">Latrigg Fell</span>
-                            </div>
-                            <div class="goal-subitem">
-                                <span class="goal-marker"></span>
-                                <span class="goal-text">Gummers How</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Goal 5 -->
-                        <div class="goal-item">
-                            <span class="goal-marker"></span>
-                            <span class="goal-text">Visit Edinburgh Again</span>
-                        </div>
-                        
-                        <!-- Goal 6 -->
-                        <div class="goal-item">
-                            <span class="goal-marker"></span>
-                            <span class="goal-text">Get Back into Sim-Racing</span>
-                        </div>
+                <div class="goals-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
                     </div>
-                    
-                    <div class="goals-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <span class="progress-text" id="progressText">0.0% complete</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer-tile glass-tile">
-            <div class="footer-brand">Sachin <span>Bhasin</span></div>
-            <div class="footer-links">
-                <a asp-controller="Home" asp-action="index">Home</a>
-                <a asp-controller="Home" asp-action="about">About</a>
-                <a asp-controller="Home" asp-action="collections">Collections</a>
-                <a asp-controller="Home" asp-action="recipes">Recipes</a>
-                <a asp-controller="Home" asp-action="blog">Blog</a>
-                <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
-            </div>
-            <p class="footer-copyright">© 2025 Sachin Bhasin. All rights reserved.</p>
-        </footer>
-    </main>
-
-    <!-- Blog Modal -->
-    <div class="modal" id="blogModal">
-        <button class="modal-close" onclick="closeBlogModal()">×</button>
-        <div class="modal-content glass-tile">
-            <div class="modal-banner" id="modalBanner">
-                <div class="modal-banner-placeholder">BANNER IMAGE</div>
-            </div>
-            <div class="modal-details">
-                <div class="modal-header">
-                    <span class="modal-date" id="modalDate">January 1, 2026</span>
-                    <span class="modal-readtime" id="modalReadtime">5 min read</span>
-                </div>
-                <h2 class="modal-title" id="modalTitle">Blog Post Title</h2>
-                <div class="modal-divider"></div>
-                <div class="modal-body" id="modalBody">
-                    <p>Blog content goes here...</p>
+                    <span class="progress-text" id="progressText">0.0% complete</span>
                 </div>
             </div>
         </div>
+    </section>
+
+    <footer class="footer-tile glass-tile">
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+            <a asp-controller="Home" asp-action="index">Home</a>
+            <a asp-controller="Home" asp-action="about">About</a>
+            <a asp-controller="Home" asp-action="collections">Collections</a>
+            <a asp-controller="Home" asp-action="recipes">Recipes</a>
+            <a asp-controller="Home" asp-action="blog">Blog</a>
+            <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+</main>
+
+<!-- Blog Modal -->
+<div class="modal" id="blogModal">
+    <button class="modal-close" onclick="closeBlogModal()">×</button>
+    <div class="modal-content glass-tile">
+        <div class="modal-banner" id="modalBanner">
+            <div class="modal-banner-placeholder">BANNER IMAGE</div>
+        </div>
+        <div class="modal-details">
+            <div class="modal-header">
+                <span class="modal-date" id="modalDate">January 1, 2026</span>
+                <span class="modal-readtime" id="modalReadtime">5 min read</span>
+            </div>
+            <h2 class="modal-title" id="modalTitle">Blog Post Title</h2>
+            <div class="modal-divider"></div>
+            <div class="modal-body" id="modalBody">
+                <p>Blog content goes here...</p>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script src="js/blog.js"></script>
-
-</body>
+@section Scripts {
+    <script src="~/js/blog.js"></script>
+}

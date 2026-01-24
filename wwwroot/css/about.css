@@ -80,12 +80,18 @@
     }
     
     .bio-stats {
-        width: 100%;
+        flex-direction: row;
         justify-content: center;
+        gap: 3rem;
     }
     
     .bio-stat {
         text-align: center;
+    }
+    
+    .bio-stat-divider {
+        width: 1px;
+        height: 60px;
     }
 }
 

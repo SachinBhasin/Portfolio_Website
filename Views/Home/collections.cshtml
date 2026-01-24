@@ -2,58 +2,42 @@
     ViewData["Title"] = "Collections";
 }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collections | Sachin Bhasin</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/shared.css">
+@section Styles {
     <link rel="stylesheet" href="~/css/collections.css">
-</head>
-<body>
+}
 
-    <nav class="pill-nav">
-        <a asp-controller="Home" asp-action="index" class="nav-link">Home</a>
-        <a asp-controller="Home" asp-action="about" class="nav-link">About</a>
-        <a asp-controller="Home" asp-action="collections" class="nav-link active">Collections</a>
-        <a asp-controller="Home" asp-action="recipes" class="nav-link">Recipes</a>
-        <a asp-controller="Home" asp-action="blog" class="nav-link">Blog</a>
-        <span class="nav-link coming-soon-btn">Coming Soon™</span>
-    </nav>
-
-    <main class="page-container wide">
-        <section class="content-tile glass-tile">
-            <div class="collections-header">
-                <h1 class="page-title">My <span>Collections</span></h1>
-                <p class="page-subtitle">All photographs are available on Flickr.  Any website issues are due to Flickr server side issues.</p>
-                <div class="search-container">
-                    <input type="text" id="collectionSearch" class="search-input" placeholder="Search events...">
-                </div>
+<main class="page-container wide">
+    <section class="content-tile glass-tile">
+        <div class="collections-header">
+            <h1 class="page-title">My <span>Collections</span></h1>
+            <p class="page-subtitle">All photographs are available on Flickr. Any website issues are due to Flickr server side issues.</p>
+            <div class="search-container">
+                <input type="text" id="collectionSearch" class="search-input" placeholder="Search events...">
             </div>
-            
-            <p id="resultsInfo" class="results-info"></p>
-            
-            <div id="collectionsContainer" class="collections-container">
-                <!-- Collections rendered by JavaScript -->
-            </div>
-        </section>
+        </div>
+        
+        <p id="resultsInfo" class="results-info"></p>
+        
+        <div id="collectionsContainer" class="collections-container">
+            <!-- Collections rendered by JavaScript -->
+        </div>
+    </section>
 
-        <footer class="footer-tile glass-tile">
-            <div class="footer-brand">Sachin <span>Bhasin</span></div>
-            <div class="footer-links">
-                <a asp-controller="Home" asp-action="index">Home</a>
-                <a asp-controller="Home" asp-action="about">About</a>
-                <a asp-controller="Home" asp-action="collections">Collections</a>
-                <a asp-controller="Home" asp-action="recipes">Recipes</a>
-                <a asp-controller="Home" asp-action="blog">Blog</a>
-                <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
-            </div>
-            <p class="footer-copyright">© 2025 Sachin Bhasin. All rights reserved.</p>
-        </footer>
-    </main>
+    <footer class="footer-tile glass-tile">
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+            <a asp-controller="Home" asp-action="index">Home</a>
+            <a asp-controller="Home" asp-action="about">About</a>
+            <a asp-controller="Home" asp-action="collections">Collections</a>
+            <a asp-controller="Home" asp-action="recipes">Recipes</a>
+            <a asp-controller="Home" asp-action="blog">Blog</a>
+            <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+</main>
 
-    <script src="js/data/collections-data.js"></script>
-    <script src="js/collections.js"></script>
-
-</body>
+@section Scripts {
+    <script src="~/js/data/collections-data.js"></script>
+    <script src="~/js/collections.js"></script>
+}

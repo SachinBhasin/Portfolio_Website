@@ -507,6 +507,84 @@ body::before {
 }
 
 /* ================================
+   SHARED PAGE STYLES
+   ================================ */
+.page-container {
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container.wide {
+    max-width: 1100px;
+}
+
+.page-container .content-tile {
+    flex: 1;
+}
+
+.page-container .footer-tile {
+    margin-top: auto;
+}
+
+.content-tile {
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+    .page-title span {
+        font-style: italic;
+        color: var(--accent);
+    }
+
+.page-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Search Input */
+.search-container {
+    margin-top: 1rem;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    background: rgba(30, 30, 30, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+    .search-input:focus {
+        border-color: var(--accent);
+        background: rgba(40, 40, 40, 0.8);
+    }
+
+    .search-input::placeholder {
+        color: var(--text-muted);
+    }
+
+/* ================================
    RESPONSIVE
    ================================ */
 @media (max-width: 1200px) {
@@ -573,8 +651,11 @@ body::before {
     }
     
     .hero-portrait {
-        width: 150px;
-        height: 180px;
+        width: 70%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 3/4;
+        margin: 0 auto;
     }
     
     .activity-item {
@@ -621,5 +702,119 @@ body::before {
     .activity-date {
         padding-left: calc(40px + 0.75rem);
         font-size: 0.7rem;
+    }
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* ================================
+   MOBILE HAMBURGER MENU
+   ================================ */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1003;
+}
+
+    .hamburger-btn span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--text-primary);
+        transition: all 0.3s ease;
+    }
+
+.mobile-overlay {
+    display: none;
+}
+
+
+/* Mobile styles - under 500px */
+@media (max-width: 500px) {
+    .hamburger-btn {
+        display: flex;
+        z-index: 1003;
+    }
+
+    .pill-nav {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        right: auto;
+        transform: none;
+        padding: 0.5rem;
+        border-radius: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 180px;
+        margin-top: 0.5rem;
+        padding: 0.5rem 0;
+        background: rgba(20, 20, 20, 0.95);
+        border-top: 1px solid var(--glass-border);
+        border-radius: 0 0 10px 10px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links .nav-link {
+        display: block;
+        font-size: 0.85rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0;
+        text-align: left;
+        color: var(--text-secondary);
+    }
+
+    .nav-links .nav-link:hover,
+    .nav-links .nav-link.active {
+        background: rgba(212, 165, 116, 0.15);
+        color: var(--accent);
+    }
+
+    .nav-links .nav-link::after {
+        display: none;
+    }
+
+    .nav-links .coming-soon-btn {
+        margin: 0.5rem 0.75rem;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        color: var(--bg-primary);
+    }
+
+    /* Hamburger animation when open */
+    .hamburger-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
     }
 }

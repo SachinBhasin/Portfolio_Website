@@ -1,112 +1,85 @@
 @{
     ViewData["Title"] = "Home";
 }
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sachin Bhasin | Home</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/site.css">
-</head>
-<body>
-
-    <nav class="pill-nav">
-        <a asp-controller="Home" asp-action="index" class="nav-link active">Home</a>
-        <a asp-controller="Home" asp-action="about" class="nav-link">About</a>
-        <a asp-controller="Home" asp-action="collections" class="nav-link">Collections</a>
-        <a asp-controller="Home" asp-action="recipes" class="nav-link">Recipes</a>
-        <a asp-controller="Home" asp-action="blog" class="nav-link">Blog</a>
-        <span class="nav-link coming-soon-btn">Coming Soon™</span>
-    </nav>
-
-    <main class="home-container">
-        <div class="tiles-wrapper">
-            <!-- Hero Tile -->
-            <section class="hero-tile glass-tile">
-                <div class="hero-content">
-                    <p class="hero-greeting">Welcome to my world</p>
-                    <h1 class="hero-name">Sachin <span>Bhasin</span></h1>
-                    <p class="hero-title">Photographer • Storyteller • Explorer</p>
-                    <p class="hero-description">
-                        Building a life around curiosity and craft, exploring the world through a lens while learning something new with every single frame.
-                    </p>
-                    <p class="hero-journey">
-                        2024 was the year for learning.<br>
-                        2025 was the year for understanding.<br>
-                        2026 will be the year of becoming.
-                    </p>
-                </div>
-                <div class="hero-portrait">
-                    <img src="/res/SachinBhasinPortrait.jpeg" alt="Sachin Bhasin">
-                </div>
-            </section>
-
-            <!-- What's New Section -->
-            <section class="featured-tile glass-tile">
-                <h2 class="featured-title">What's <span>New</span></h2>
-                <div class="activity-feed">
-                    <!--
-                        ACTIVITY FEED ITEMS
-                        ===================
-                        - Set the data-date attribute to the actual date (YYYY-MM-DD format)
-                        - The JavaScript will automatically calculate "X days/weeks/months ago"
-                        - Update the href, icon, type, and name as needed
-                    -->
-                    
-                    <!-- Activity Item 1 - Recipe -->
-                    <a asp-controller="Home" asp-action="recipes" class="activity-item" data-date="2026-01-15">
-                        <div class="activity-icon">🍳</div>
-                        <div class="activity-content">
-                            <span class="activity-type">New Recipe</span>
-                            <span class="activity-name">Berry Ricotta Cake</span>
-                        </div>
-                        <span class="activity-date"></span>
-                    </a>
-                    
-                    <div class="activity-divider"></div>
-                    
-                    <!-- Activity Item 2 - Blog -->
-                    <a asp-controller="Home" asp-action="blog" class="activity-item" data-date="2026-01-01">
-                        <div class="activity-icon">📝</div>
-                        <div class="activity-content">
-                            <span class="activity-type">New Blog Post</span>
-                            <span class="activity-name">"Laying the Groundwork for 2026"</span>
-                        </div>
-                        <span class="activity-date"></span>
-                    </a>
-                    
-                    <div class="activity-divider"></div>
-                    
-                    <!-- Activity Item 3 - Collection -->
-                    <a asp-controller="Home" asp-action="collections" class="activity-item" data-date="2025-09-20">
-                        <div class="activity-icon">📷</div>
-                        <div class="activity-content">
-                            <span class="activity-type">New Collection Added</span>
-                            <span class="activity-name">Silverstone 2025 — European Le Mans Series</span>
-                        </div>
-                        <span class="activity-date"></span>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer-tile glass-tile">
-            <div class="footer-brand">Sachin <span>Bhasin</span></div>
-            <div class="footer-links">
-                <a asp-controller="Home" asp-action="index">Home</a>
-                <a asp-controller="Home" asp-action="about">About</a>
-                <a asp-controller="Home" asp-action="collections">Collections</a>
-                <a asp-controller="Home" asp-action="recipes">Recipes</a>
-                <a asp-controller="Home" asp-action="blog">Blog</a>
-                <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
+<main class="home-container">
+    <div class="tiles-wrapper">
+        <!-- Hero Tile -->
+        <section class="hero-tile glass-tile">
+            <div class="hero-content">
+                <p class="hero-greeting">Welcome to my world</p>
+                <h1 class="hero-name">Sachin <span>Bhasin</span></h1>
+                <p class="hero-title">Photographer • Storyteller • Explorer</p>
+                <p class="hero-description">
+                    Building a life around curiosity and craft, exploring the world through a lens while learning something new with every single frame.
+                </p>
+                <p class="hero-journey">
+                    2024 was the year for learning.<br>
+                    2025 was the year for understanding.<br>
+                    2026 will be the year of becoming.
+                </p>
             </div>
-            <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
-        </footer>
-    </main>
+            <div class="hero-portrait">
+                <img src="/res/SachinBhasinPortrait.jpeg" alt="Sachin Bhasin">
+            </div>
+        </section>
 
+        <!-- What's New Section -->
+        <section class="featured-tile glass-tile">
+            <h2 class="featured-title">What's <span>New</span></h2>
+            <div class="activity-feed">
+                <!-- Activity Item 1 - Recipe -->
+                <a asp-controller="Home" asp-action="recipes" class="activity-item" data-date="2026-01-15">
+                    <div class="activity-icon">🍳</div>
+                    <div class="activity-content">
+                        <span class="activity-type">New Recipe</span>
+                        <span class="activity-name">Berry Ricotta Cake</span>
+                    </div>
+                    <span class="activity-date"></span>
+                </a>
+                
+                <div class="activity-divider"></div>
+                
+                <!-- Activity Item 2 - Blog -->
+                <a asp-controller="Home" asp-action="blog" class="activity-item" data-date="2026-01-01">
+                    <div class="activity-icon">📝</div>
+                    <div class="activity-content">
+                        <span class="activity-type">New Blog Post</span>
+                        <span class="activity-name">"Laying the Groundwork for 2026"</span>
+                    </div>
+                    <span class="activity-date"></span>
+                </a>
+                
+                <div class="activity-divider"></div>
+                
+                <!-- Activity Item 3 - Collection -->
+                <a asp-controller="Home" asp-action="collections" class="activity-item" data-date="2025-09-20">
+                    <div class="activity-icon">📷</div>
+                    <div class="activity-content">
+                        <span class="activity-type">New Collection Added</span>
+                        <span class="activity-name">Silverstone 2025 — European Le Mans Series</span>
+                    </div>
+                    <span class="activity-date"></span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-tile glass-tile">
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
+            <a asp-controller="Home" asp-action="index">Home</a>
+            <a asp-controller="Home" asp-action="about">About</a>
+            <a asp-controller="Home" asp-action="collections">Collections</a>
+            <a asp-controller="Home" asp-action="recipes">Recipes</a>
+            <a asp-controller="Home" asp-action="blog">Blog</a>
+            <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+</main>
+
+@section Scripts {
     <script>
         // Calculate relative time (e.g., "2 days ago", "1 week ago")
         function getRelativeTime(dateString) {
@@ -137,5 +110,4 @@
             });
         });
     </script>
-
-</body>
+}

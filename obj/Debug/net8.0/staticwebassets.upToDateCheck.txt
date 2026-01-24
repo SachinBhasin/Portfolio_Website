@@ -1,10 +1,9 @@
-wwwroot\css\about.css
 wwwroot\css\blog.css
 wwwroot\css\collections.css
 wwwroot\css\recipes.css
 wwwroot\css\shared.css
-wwwroot\css\site.css
 wwwroot\Favicon.png
+wwwroot\js\about.js
 wwwroot\js\blog.js
 wwwroot\js\collections.js
 wwwroot\js\data\all-recipes.js
@@ -69,4 +68,5 @@ wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\res\SachinBhasinPortrait.jpeg
-wwwroot\js\about.js
+wwwroot\css\about.css
+wwwroot\css\site.css

@@ -2,213 +2,197 @@
     ViewData["Title"] = "Recipes";
 }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes | Sachin Bhasin</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/shared.css">
+@section Styles {
     <link rel="stylesheet" href="~/css/recipes.css">
-</head>
-<body>
+}
 
-    <nav class="pill-nav">
-        <a asp-controller="Home" asp-action="index" class="nav-link">Home</a>
-        <a asp-controller="Home" asp-action="about" class="nav-link">About</a>
-        <a asp-controller="Home" asp-action="collections" class="nav-link">Collections</a>
-        <a asp-controller="Home" asp-action="recipes" class="nav-link active">Recipes</a>
-        <a asp-controller="Home" asp-action="blog" class="nav-link">Blog</a>
-        <span class="nav-link coming-soon-btn">Coming Soon™</span>
-    </nav>
+<main class="page-container wide">
+    <section class="content-tile glass-tile">
+        <h1 class="page-title">My <span>Recipes</span></h1>
+        <p class="page-subtitle">A collection of my favourite dishes</p>
+        
+        <div class="filters-container">
+            <div class="filters-buttons">
+                <!-- Filter buttons are generated dynamically from recipe tags -->
+            </div>
+            <div class="search-container">
+                <input type="text" id="recipeSearch" class="search-input" placeholder="Search recipes...">
+            </div>
+        </div>
 
-    <main class="page-container wide">
-        <section class="content-tile glass-tile">
-            <h1 class="page-title">My <span>Recipes</span></h1>
-            <p class="page-subtitle">A collection of my favourite dishes</p>
-            
-            <div class="filters-container">
-                <div class="filters-buttons">
-                    <!-- Filter buttons are generated dynamically from recipe tags -->
+        <div class="recipes-grid">
+            <!-- 0: Scottish Shortbread -->
+            <article class="recipe-card" data-tags="snack" onclick="openRecipeModal(0)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Scottish Shortbread">
                 </div>
-                <div class="search-container">
-                    <input type="text" id="recipeSearch" class="search-input" placeholder="Search recipes...">
+                <div class="recipe-content">
+                    <div class="recipe-tags"><span class="recipe-tag">Snack</span></div>
+                    <h3 class="recipe-title">Scottish Shortbread</h3>
+                    <p class="recipe-desc">A simple ratio of butter, sugar, and flour creates a rich, crumbly treat.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">20 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">30 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Medium</span></div>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="recipes-grid">
-                <!-- 0: Scottish Shortbread -->
-                <article class="recipe-card" data-tags="snack" onclick="openRecipeModal(0)">
-                    <div class="recipe-image">
-                        <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Scottish Shortbread">
+            <!-- 1: Moist Banana Bread -->
+            <article class="recipe-card" data-tags="snack" onclick="openRecipeModal(1)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1621994214182-f467e6999dc9?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Moist Banana Bread">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags"><span class="recipe-tag">Snack</span></div>
+                    <h3 class="recipe-title">Moist Banana Bread</h3>
+                    <p class="recipe-desc">A moist and delicious banana bread made with ripe bananas and a hint of vanilla.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">20 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">1 hour</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Medium</span></div>
                     </div>
-                    <div class="recipe-content">
-                        <div class="recipe-tags"><span class="recipe-tag">Snack</span></div>
-                        <h3 class="recipe-title">Scottish Shortbread</h3>
-                        <p class="recipe-desc">A simple ratio of butter, sugar, and flour creates a rich, crumbly treat.</p>
-                        <div class="recipe-meta">
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">20 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">30 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Medium</span></div>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <!-- 1: Moist Banana Bread -->
-                <article class="recipe-card" data-tags="snack" onclick="openRecipeModal(1)">
-                    <div class="recipe-image">
-                        <img src="https://images.unsplash.com/photo-1621994214182-f467e6999dc9?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Moist Banana Bread">
+            <!-- 2: Cranberry Sauce -->
+            <article class="recipe-card" data-tags="sauce" onclick="openRecipeModal(2)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1625989803651-f57135dc1d64?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cranberry Sauce">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags"><span class="recipe-tag">Sauce</span></div>
+                    <h3 class="recipe-title">Cranberry Sauce</h3>
+                    <p class="recipe-desc">A tart and sweet sauce perfect for holiday meals.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">10 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">15 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Easy</span></div>
                     </div>
-                    <div class="recipe-content">
-                        <div class="recipe-tags"><span class="recipe-tag">Snack</span></div>
-                        <h3 class="recipe-title">Moist Banana Bread</h3>
-                        <p class="recipe-desc">A moist and delicious banana bread made with ripe bananas and a hint of vanilla.</p>
-                        <div class="recipe-meta">
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">20 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">1 hour</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Medium</span></div>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <!-- 2: Cranberry Sauce -->
-                <article class="recipe-card" data-tags="sauce" onclick="openRecipeModal(2)">
-                    <div class="recipe-image">
-                        <img src="https://images.unsplash.com/photo-1625989803651-f57135dc1d64?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cranberry Sauce">
+            <!-- 3: Cranberry Glazed Salmon -->
+            <article class="recipe-card" data-tags="dinner" onclick="openRecipeModal(3)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1556978252-55ae70c2ac8d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cranberry Glazed Salmon">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags"><span class="recipe-tag">Dinner</span></div>
+                    <h3 class="recipe-title">Cranberry Glazed Salmon</h3>
+                    <p class="recipe-desc">A deliciously glazed salmon fillet with a tangy cranberry sauce.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">10 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">15 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Easy</span></div>
                     </div>
-                    <div class="recipe-content">
-                        <div class="recipe-tags"><span class="recipe-tag">Sauce</span></div>
-                        <h3 class="recipe-title">Cranberry Sauce</h3>
-                        <p class="recipe-desc">A tart and sweet sauce perfect for holiday meals.</p>
-                        <div class="recipe-meta">
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">10 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">15 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Easy</span></div>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <!-- 3: Cranberry Glazed Salmon -->
-                <article class="recipe-card" data-tags="dinner" onclick="openRecipeModal(3)">
-                    <div class="recipe-image">
-                        <img src="https://images.unsplash.com/photo-1556978252-55ae70c2ac8d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cranberry Glazed Salmon">
+            <!-- 4: One-Pan Cashew Chicken -->
+            <article class="recipe-card" data-tags="dinner" onclick="openRecipeModal(4)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1726771517475-e7acdd34cd8a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="One-Pan Cashew Chicken">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags"><span class="recipe-tag">Dinner</span></div>
+                    <h3 class="recipe-title">One-Pan Cashew Chicken</h3>
+                    <p class="recipe-desc">A one-pan meal with tender chicken, cashews, and a savory sauce.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">15 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">30 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Easy</span></div>
                     </div>
-                    <div class="recipe-content">
-                        <div class="recipe-tags"><span class="recipe-tag">Dinner</span></div>
-                        <h3 class="recipe-title">Cranberry Glazed Salmon</h3>
-                        <p class="recipe-desc">A deliciously glazed salmon fillet with a tangy cranberry sauce.</p>
-                        <div class="recipe-meta">
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">10 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">15 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Easy</span></div>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <!-- 4: One-Pan Cashew Chicken -->
-                <article class="recipe-card" data-tags="dinner" onclick="openRecipeModal(4)">
-                    <div class="recipe-image">
-                        <img src="https://images.unsplash.com/photo-1726771517475-e7acdd34cd8a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="One-Pan Cashew Chicken">
+            <!-- 5: Raspberry Ricotta Cake -->
+            <article class="recipe-card" data-tags="dessert" onclick="openRecipeModal(5)">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1755860153998-2b8a2f6326d5?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raspberry Ricotta Cake">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-tags"><span class="recipe-tag">Dessert</span></div>
+                    <h3 class="recipe-title">Raspberry Ricotta Cake</h3>
+                    <p class="recipe-desc">An Italian-inspired dessert with fresh raspberries and creamy ricotta cheese.</p>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">15 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">65 mins</span></div>
+                        <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Advanced</span></div>
                     </div>
-                    <div class="recipe-content">
-                        <div class="recipe-tags"><span class="recipe-tag">Dinner</span></div>
-                        <h3 class="recipe-title">One-Pan Cashew Chicken</h3>
-                        <p class="recipe-desc">A one-pan meal with tender chicken, cashews, and a savory sauce.</p>
-                        <div class="recipe-meta">
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">15 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">30 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Easy</span></div>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
+        </div>
 
-                <!-- 5: Raspberry Ricotta Cake -->
-                <article class="recipe-card" data-tags="dessert" onclick="openRecipeModal(5)">
-                    <div class="recipe-image">
-                        <img src="https://images.unsplash.com/photo-1755860153998-2b8a2f6326d5?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raspberry Ricotta Cake">
-                    </div>
-                    <div class="recipe-content">
-                        <div class="recipe-tags"><span class="recipe-tag">Dessert</span></div>
-                        <h3 class="recipe-title">Raspberry Ricotta Cake</h3>
-                        <p class="recipe-desc">An Italian-inspired dessert with fresh raspberries and creamy ricotta cheese.</p>
-                        <div class="recipe-meta">
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Prep Time</span><span class="recipe-meta-value">15 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Cook Time</span><span class="recipe-meta-value">65 mins</span></div>
-                            <div class="recipe-meta-item"><span class="recipe-meta-label">Difficulty</span><span class="recipe-meta-value">Advanced</span></div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+        <div class="show-more-container">
+            <button class="show-more-btn" onclick="showMoreRecipes()">Show More Recipes</button>
+        </div>
+    </section>
 
-            <div class="show-more-container">
-                <button class="show-more-btn" onclick="showMoreRecipes()">Show More Recipes</button>
-            </div>
-        </section>
-
-        <footer class="footer-tile glass-tile">
-            <div class="footer-brand">Sachin <span>Bhasin</span></div>
-            <div class="footer-links">
+    <footer class="footer-tile glass-tile">
+        <div class="footer-brand">Sachin <span>Bhasin</span></div>
+        <div class="footer-links">
             <a asp-controller="Home" asp-action="index">Home</a>
             <a asp-controller="Home" asp-action="about">About</a>
             <a asp-controller="Home" asp-action="collections">Collections</a>
             <a asp-controller="Home" asp-action="recipes">Recipes</a>
             <a asp-controller="Home" asp-action="blog">Blog</a>
             <a href="https://www.flickr.com/photos/204067982@N08/" target="_blank">Flickr</a>
-            </div>
-            <p class="footer-copyright">© 2025 Sachin Bhasin. All rights reserved.</p>
-        </footer>
-    </main>
+        </div>
+        <p class="footer-copyright">© @DateTime.UtcNow.Year Sachin Bhasin. All rights reserved.</p>
+    </footer>
+</main>
 
-    <!-- Recipe Modal -->
-    <div class="recipe-modal" id="recipeModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeRecipeModal()">×</button>
-            <div class="modal-banner" id="modalBanner">
-                <div class="modal-banner-placeholder">RECIPE IMAGE</div>
-            </div>
-            <div class="modal-details">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="modalTitle">Recipe Title</h2>
-                    <div class="modal-meta-grid">
-                        <div class="modal-meta-item">
-                            <span class="modal-meta-label">Prep Time</span>
-                            <span class="modal-meta-value" id="modalPrep">--</span>
-                        </div>
-                        <div class="modal-meta-item">
-                            <span class="modal-meta-label">Cook Time</span>
-                            <span class="modal-meta-value" id="modalCook">--</span>
-                        </div>
-                        <div class="modal-meta-item">
-                            <span class="modal-meta-label">Difficulty</span>
-                            <span class="modal-meta-value" id="modalDifficulty">--</span>
-                        </div>
-                        <div class="modal-meta-item">
-                            <span class="modal-meta-label">Servings</span>
-                            <span class="modal-meta-value" id="modalServings">--</span>
-                        </div>
+<!-- Recipe Modal -->
+<div class="recipe-modal" id="recipeModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeRecipeModal()">×</button>
+        <div class="modal-banner" id="modalBanner">
+            <div class="modal-banner-placeholder">RECIPE IMAGE</div>
+        </div>
+        <div class="modal-details">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Recipe Title</h2>
+                <div class="modal-meta-grid">
+                    <div class="modal-meta-item">
+                        <span class="modal-meta-label">Prep Time</span>
+                        <span class="modal-meta-value" id="modalPrep">--</span>
+                    </div>
+                    <div class="modal-meta-item">
+                        <span class="modal-meta-label">Cook Time</span>
+                        <span class="modal-meta-value" id="modalCook">--</span>
+                    </div>
+                    <div class="modal-meta-item">
+                        <span class="modal-meta-label">Difficulty</span>
+                        <span class="modal-meta-value" id="modalDifficulty">--</span>
+                    </div>
+                    <div class="modal-meta-item">
+                        <span class="modal-meta-label">Servings</span>
+                        <span class="modal-meta-value" id="modalServings">--</span>
                     </div>
                 </div>
-                <div class="modal-layout">
-                    <div class="modal-main">
-                        <div class="modal-body" id="modalBody"></div>
+            </div>
+            <div class="modal-layout">
+                <div class="modal-main">
+                    <div class="modal-body" id="modalBody"></div>
+                </div>
+                <div class="modal-sidebar">
+                    <div class="modal-sidebar-box">
+                        <h4 class="modal-sidebar-title">About This Recipe</h4>
+                        <p class="modal-sidebar-text" id="modalDescription"></p>
                     </div>
-                    <div class="modal-sidebar">
-                        <div class="modal-sidebar-box">
-                            <h4 class="modal-sidebar-title">About This Recipe</h4>
-                            <p class="modal-sidebar-text" id="modalDescription"></p>
-                        </div>
-                        <div class="modal-sidebar-box">
-                            <h4 class="modal-sidebar-title">Notes</h4>
-                            <p class="modal-sidebar-text" id="modalNotes"></p>
-                        </div>
+                    <div class="modal-sidebar-box">
+                        <h4 class="modal-sidebar-title">Notes</h4>
+                        <p class="modal-sidebar-text" id="modalNotes"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="js/data/all-recipes.js"></script>
-    <script src="js/recipes.js"></script>
-    <script src="js/recipes-filter.js"></script>
-
-</body>
+@section Scripts {
+    <script src="~/js/data/all-recipes.js"></script>
+    <script src="~/js/recipes.js"></script>
+    <script src="~/js/recipes-filter.js"></script>
+}
