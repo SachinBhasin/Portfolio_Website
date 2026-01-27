@@ -7,7 +7,7 @@ const timelineData = [
     {
         title: "The First Move",
         date: "May 2004",
-        description: "Another move, another country. We travlled around 6,000 miles, to get settled in Doha, the capital of Qatar. It was a massive change from the Netherlands, not least because of the extreme heat (highs of 50°C in summer), but it was a life-changing experience nonetheless. The memories I made in that desert city will be cherished for life.",
+        description: "We travlled around 6,000 miles, to get settled in Doha, the capital of Qatar. It was a massive change from the Netherlands, especially with the extreme heat (highs of 50°C in summer), but it was a life-changing experience nonetheless. I'll cherish the memories I made in that desert city forever.",
     },
     {
         title: "The Second Move",
